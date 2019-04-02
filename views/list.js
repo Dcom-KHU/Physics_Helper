@@ -1,3 +1,5 @@
+const fs=require('fs')
+
 exports.List=(req,res)=>{
     const Render=()=>{
         fs.readFile('./static/html/list.html',(err,data)=>{

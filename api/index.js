@@ -3,6 +3,6 @@ const router=express.Router()
 
 const login=require('./login')
 
-router.post('login',login.Login)
+router.post('/login',login.Login)
 
 module.exports=router
