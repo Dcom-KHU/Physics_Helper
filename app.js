@@ -23,7 +23,14 @@ app.use(session({
 }))
 
 app.use('/api',require('./api'))
-
+app.get('/',(req,res)=>{
+    if(!req.session.verified){
+        res.redirect('/auth')
+    }
+    else{
+        res.redirect('/list')
+    }
+})
 
 app.listen(process.env.SERVER_PORT ||3000,()=>{
     console.log('server is running on port '+process.env.SERVER_PORT)
