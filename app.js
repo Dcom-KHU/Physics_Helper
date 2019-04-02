@@ -1,0 +1,30 @@
+const express = require('express')
+const bodyParser = require('body-parser')
+const fs = require('fs')
+const session = require('express-session')
+const path = require('path')
+require('dotenv').config()
+
+const app=express()
+
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+app.use( (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH')
+    res.header('Access-Control-Allow-Headers', 'content-type, x-access-token')
+    next()
+})
+
+app.use(session({
+    secret:'ambc@!vsmkv#!&*!#EDNAnsv#!$()_*#@',
+    resave:false,
+    saveUninitialized:true
+}))
+
+app.use('/api',require('./api'))
+
+
+app.listen(process.env.SERVER_PORT ||3000,()=>{
+    console.log('server is running on port '+process.env.SERVER_PORT)
+})

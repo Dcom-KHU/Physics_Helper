@@ -3,3 +3,6 @@
 
 #Module dir
 node_modules 
+
+#Project's vulnerabilities
+.env
