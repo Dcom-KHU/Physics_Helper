@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Physics Helper</title>
+    <style>
+        .dataTable{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .dataTable tr,.dataTable td{
+            border:1px solid black;
+        }
+        .resultTable{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .resultTable tr,.resultTable td{
+            border:1px solid black;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#calculate').click(function(){
+                let balls=['steel','golf','plastic']
+                for(let i=0;i<balls.length;i++){
+                    let timeSum=0
+                    for(let j=1;j<=5;j++){
+                        timeSum+=Number($(`#${balls[i]}T${j}`).val())
+                    }
+                    let averageTime=(timeSum/5).toFixed(5)
+                    $(`#${balls[i]}AverageT`).text(`${averageTime}`)
+                    let G=(2*Number($('#height').val())/(averageTime*averageTime)).toFixed(5)
+                    $(`#${balls[i]}G`).text(G)
+                    let difference=(Math.abs(G-9.8)/9.8*100).toFixed(2)
+                    $(`#${balls[i]}Difference`).text(difference)
+                }
+            })
+            $('#clear').click(function(){
+                let balls=['steel','golf','plastic']
+                for(let i=0;i<balls.length;i++){
+                    $('#height').val('')
+                    $(`#${balls[i]}Weight`).val('')
+                    $(`#${balls[i]}Radius`).val('')
+                    for(let j=1;j<=5;j++){
+                        $(`#${balls[i]}T${j}`).val('')
+                    }
+                    $(`#${balls[i]}AverageT`).text('')
+                    $(`#${balls[i]}G`).text('')
+                    $(`#${balls[i]}Difference`).text('')
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>인터페이스 실험</h1>
+    <input type="button" id="calculate" value="모두 계산하기"/>
+    <input type="button" id="clear" value="모두 지우기"/>
+    <table class="dataTable" >
+        <tr>
+            <td>높이 h[m]</td>
+            <td colspan="2"><input id="height" type="number"/></td>
+            <td colspan="5">t[s]</td>
+        </tr>
+        <tr>
+            <td>구슬 종류</td>
+            <td>m[kg]</td>
+            <td>r[m]</td>
+            <td>1회</td>
+            <td>2회</td>
+            <td>3회</td>
+            <td>4회</td>
+            <td>5회</td>
+        </tr>
+        <tr>
+            <td>쇠공</td>
+            <td><input id="steelWeight" type="number"/></td>
+            <td><input id="steelRadius" type="number"/></td>
+            <td><input id="steelT1" type="number"/></td>
+            <td><input id="steelT2" type="number"/></td>
+            <td><input id="steelT3" type="number"/></td>
+            <td><input id="steelT4" type="number"/></td>
+            <td><input id="steelT5" type="number"/></td>
+        </tr>
+        <tr>
+            <td>골프공</td>
+            <td><input id="golfWeight" type="number"/></td>
+            <td><input id="golfRadius" type="number"/></td>
+            <td><input id="golfT1" type="number"/></td>
+            <td><input id="golfT2" type="number"/></td>
+            <td><input id="golfT3" type="number"/></td>
+            <td><input id="golfT4" type="number"/></td>
+            <td><input id="golfT5" type="number"/></td>
+        </tr>
+        <tr>
+            <td>플라스틱공</td>
+            <td><input id="plasticWeight" type="number"/></td>
+            <td><input id="plasticRadius" type="number"/></td>
+            <td><input id="plasticT1" type="number"/></td>
+            <td><input id="plasticT2" type="number"/></td>
+            <td><input id="plasticT3" type="number"/></td>
+            <td><input id="plasticT4" type="number"/></td>
+            <td><input id="plasticT5" type="number"/></td>
+        </tr>
+    </table>
+    <br>
+    <table class="resultTable">
+        <tr>
+            <td>구슬종류</td>
+            <td>t 평균값[s]</td>
+            <td>중력가속도 g[m/s^2]</td>
+            <td>오차율(%)</td>
+        </tr>
+        <tr>
+            <td>쇠공</td>
+            <td><p id="steelAverageT"></p></td>
+            <td><p id="steelG"></p></td>
+            <td><p id="steelDifference"></p></td>
+        </tr>
+        <tr>
+            <td>골프공</td>
+            <td><p id="golfAverageT"></p></td>
+            <td><p id="golfG"></p></td>
+            <td><p id="golfDifference"></p></td>
+        </tr>
+        <tr>
+            <td>플라스틱공</td>
+            <td><p id="plasticAverageT"></p></td>
+            <td><p id="plasticG"></p></td>
+            <td><p id="plasticDifference"></p></td>
+        </tr>
+    </table>
+</body>
+</html>
