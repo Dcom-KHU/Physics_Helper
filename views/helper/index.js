@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-app.get('/auth')
-app.get('/list')
-app.use('/helper',require('./helper'))
+const render = require('./render')
+
+app.get('/:expNo',render.Render)
 
 module.exports=router

@@ -23,12 +23,13 @@ app.use(session({
 }))
 
 app.use('/api',require('./api'))
+app.use('/views',require('./views'))
 app.get('/',(req,res)=>{
     if(!req.session.verified){
-        res.redirect('/auth')
+        res.redirect('/views/auth')
     }
     else{
-        res.redirect('/list')
+        res.redirect('/views/list')
     }
 })
 
