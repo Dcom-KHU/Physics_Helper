@@ -6,3 +6,6 @@ node_modules
 
 #Project vulnerabilities
 .env
+
+#Visualcode-configure
+.vscode/
