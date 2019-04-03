@@ -3,13 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Physics Helper</title>
+    <style>
+        .dataTable{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .dataTable tr,.dataTable td{
+            border:1px solid black;
+        }
+        .resultTable{
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .resultTable tr,.resultTable td{
+            border:1px solid black;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#calculate').click(function(){
+                let timeSum = 0
+                for(let i=1;i<=5;i++){
+                    timeSum+=Number($(`#T${i}`).val())
+                }
+                let averageTime = (timeSum/5).toFixed(5)
+                $(`#AverageT`).text(`${averageTime}`)
+                let G = (2/((averageTime*averageTime)*(Number($('#height').val())))).toFixed(5)
+                $(`#G`).text(G)
+                let difference=(Math.abs(G-9.8)/9.8*100).toFixed(2)
+                $(`#Difference`).text(difference)
+            })
+            
+            $('#clear').click(function(){
+                $('#height').val('')
+                for(let i=1;i<=5;i++){
+                    $(`#T${i}`).val('')
+                }
+                $(`#AverageT`).text('')
+                $(`#G`).text('')
+                $(`#Difference`).text('')
+
+            })
+        })
+    </script>
 </head>
 <body>
-    <h1>실험 제목</h1>
+    <h1>중력가속도 측정 실험</h1>
     <input type="button" id="calculate" value="모두 계산하기"/>
     <input type="button" id="clear" value="모두 지우기"/>
-    <div id="container">
+    <table class="dataTable" >
+        <tr>
+            <td>높이 h[m]</td>
+            <td><input id="height" type="number"/></td>
+        </tr>
+        <tr>
+            <td>1회</td>
+            <td>2회</td>
+            <td>3회</td>
+            <td>4회</td>
+            <td>5회</td>
+            <td>평균값</td>
+        </tr>
+        <tr>
 
-    </div>
+            <td><input id="T1" type="number"/></td>
+            <td><input id="T2" type="number"/></td>
+            <td><input id="T3" type="number"/></td>
+            <td><input id="T4" type="number"/></td>
+            <td><input id="T5" type="number"/></td>
+            <td><p id="AverageT"></p></td>
+
+        </tr>
+
+    </table>
+    <br>
+
+    <table class="resultTable">
+        <tr>
+            <td>중력가속도 g[m/s^2]</td>
+            <td>오차율(%)</td>
+        </tr>
+        <tr>
+            <td><p id="G"></p></td>
+            <td><p id="Difference"></p></td>
+        </tr>
+    </table>
 </body>
 </html>
