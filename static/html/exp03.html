@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Physics Helper</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#calculate").click(function(){
+                //table1
+                let sumT=0;
+                for(let i=1;i<=8;i++){
+                    sumT+=Number($(`#t${i}`).val())
+                }
+                let averageT=sumT/8
+                $("#averageT").text(averageT)
+                let L=Number($("#L").val())
+                $("#v0").text(L/averageT)
+
+                //table2
+                const degree1=[20,30,40,50,60,70]
+                for(let i=0;i<6;i++){
+                    let xSum=0
+                    let tSum=0
+                    for(let j=1;j<=3;j++){
+                        xSum+=Number($(`#x${j}d${degree1[i]}`).val())
+                        tSum+=Number($(`#t${j}d${degree1[i]}`).val())
+                    }
+                    let averageX=xSum/3
+                    averageT=tSum/3
+                    $(`#averageXd${degree1[i]}`).text(averageX)
+                    $(`#averageTd${degree1[i]}`).text(averageT)
+                    let idealX=Number($(`#idealXd${degree1[i]}`).val())
+                    let idealT=Number($(`#idealTd${degree1[i]}`).val())
+                    let differenceX=Math.abs(averageX-idealX)/idealX
+                    let differenceT=Math.abs(averageT-idealT)/idealT
+                    $(`#differenceXd${degree1[i]}`).text(differenceX)
+                    $(`#differenceTd${degree1[i]}`).text(differenceT)
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>포물체 운동 실험</h1>
+    <input type="button" id="calculate" value="모두 계산하기"/>
+    <input type="button" id="clear" value="모두 지우기"/>
+    <!-- table1 -->
+    <table class="dataTable">
+        <tr>
+            <td>횟수</td>
+            <td>1회</td>
+            <td>2회</td>
+            <td>3회</td>
+            <td>4회</td>
+            <td>5회</td>
+            <td>6회</td>
+            <td>7회</td>
+            <td>8회</td>
+            <td>평균값</td>
+        </tr>
+        <tr>
+            <td>측정값 t</td>
+            <td><input id="t1" type="number"/></td>
+            <td><input id="t2" type="number"/></td>
+            <td><input id="t3" type="number"/></td>
+            <td><input id="t4" type="number"/></td>
+            <td><input id="t5" type="number"/></td>
+            <td><input id="t6" type="number"/></td>
+            <td><input id="t7" type="number"/></td>
+            <td><input id="t8" type="number"/></td>
+
+            <td id="averageT"></td>
+        </tr>
+    </table>
+    <br>
+    <table class="resultTable">
+        <tr>
+            <td>Photogate Head<br>사이의 거리 L</td>
+            <td><input type="number" id="L"></td>
+            <td>v0=L/t</td>
+            <td id="v0">&nbsp&nbsp&nbsp</td>
+        </tr>
+    </table>
+    <br>
+    <!-- table2 -->
+    <table class="dataTable">
+        <tr>
+            <td>발사각도</td>
+            <td colspan="2">20</td>
+            <td colspan="2">30</td>
+            <td colspan="2">40</td>
+            <td colspan="2">50</td>
+            <td colspan="2">60</td>
+            <td colspan="2">70</td>
+        </tr>
+        <tr>
+            <td>측정횟수</td>
+            <td>x</td>
+            <td>t</td>
+            <td>x</td>
+            <td>t</td>
+            <td>x</td>
+            <td>t</td>
+            <td>x</td>
+            <td>t</td>
+            <td>x</td>
+            <td>t</td>
+            <td>x</td>
+            <td>t</td>
+        </tr>
+        <tr>
+            <td>1회</td>
+            <td><input id="x1d20" type="number"/></td>
+            <td><input id="t1d20" type="number"/></td>
+            <td><input id="x1d30" type="number"/></td>
+            <td><input id="t1d30" type="number"/></td>
+            <td><input id="x1d40" type="number"/></td>
+            <td><input id="t1d40" type="number"/></td>
+            <td><input id="x1d50" type="number"/></td>
+            <td><input id="t1d50" type="number"/></td>
+            <td><input id="x1d60" type="number"/></td>
+            <td><input id="t1d60" type="number"/></td>
+            <td><input id="x1d70" type="number"/></td>
+            <td><input id="t1d70" type="number"/></td>
+        </tr>
+        <tr>
+            <td>2회</td>
+            <td><input id="x2d20" type="number"/></td>
+            <td><input id="t2d20" type="number"/></td>
+            <td><input id="x2d30" type="number"/></td>
+            <td><input id="t2d30" type="number"/></td>
+            <td><input id="x2d40" type="number"/></td>
+            <td><input id="t2d40" type="number"/></td>
+            <td><input id="x2d50" type="number"/></td>
+            <td><input id="t2d50" type="number"/></td>
+            <td><input id="x2d60" type="number"/></td>
+            <td><input id="t2d60" type="number"/></td>
+            <td><input id="x2d70" type="number"/></td>
+            <td><input id="t2d70" type="number"/></td>
+        </tr>
+        <tr>
+            <td>3회</td>
+            <td><input id="x3d20" type="number"/></td>
+            <td><input id="t3d20" type="number"/></td>
+            <td><input id="x3d30" type="number"/></td>
+            <td><input id="t3d30" type="number"/></td>
+            <td><input id="x3d40" type="number"/></td>
+            <td><input id="t3d40" type="number"/></td>
+            <td><input id="x3d50" type="number"/></td>
+            <td><input id="t3d50" type="number"/></td>
+            <td><input id="x3d60" type="number"/></td>
+            <td><input id="t3d60" type="number"/></td>
+            <td><input id="x3d70" type="number"/></td>
+            <td><input id="t3d70" type="number"/></td>
+        </tr>
+        <tr>
+            <td>평균값</td>
+            <td id="averageXd20"></td>
+            <td id="averageTd20"></td>
+            <td id="averageXd30"></td>
+            <td id="averageTd30"></td>
+            <td id="averageXd40"></td>
+            <td id="averageTd40"></td>
+            <td id="averageXd50"></td>
+            <td id="averageTd50"></td>
+            <td id="averageXd60"></td>
+            <td id="averageTd60"></td>
+            <td id="averageXd70"></td>
+            <td id="averageTd70"></td>
+        </tr>
+        <tr>
+            <td>이론값</td>
+            <td><input id="idealXd20" type="number"/></td>
+            <td><input id="idealTd20" type="number"/></td>
+            <td><input id="idealXd30" type="number"/></td>
+            <td><input id="idealTd30" type="number"/></td>
+            <td><input id="idealXd40" type="number"/></td>
+            <td><input id="idealTd40" type="number"/></td>
+            <td><input id="idealXd50" type="number"/></td>
+            <td><input id="idealTd50" type="number"/></td>
+            <td><input id="idealXd60" type="number"/></td>
+            <td><input id="idealTd60" type="number"/></td>
+            <td><input id="idealXd70" type="number"/></td>
+            <td><input id="idealTd70" type="number"/></td>
+        </tr>
+        <tr>
+            <td>오차율(%)</td>
+            <td id="differenceXd20"></td>
+            <td id="differenceTd20"></td>
+            <td id="differenceXd30"></td>
+            <td id="differenceTd30"></td>
+            <td id="differenceXd40"></td>
+            <td id="differenceTd40"></td>
+            <td id="differenceXd50"></td>
+            <td id="differenceTd50"></td>
+            <td id="differenceXd60"></td>
+            <td id="differenceTd60"></td>
+            <td id="differenceXd70"></td>
+            <td id="differenceTd70"></td>
+        </tr>
+        <tr>
+            <td>최고도달 높이 y</td>
+            <td colspan="2" id="maxYd20"></td>
+            <td colspan="2" id="maxYd30"></td>
+            <td colspan="2" id="maxYd40"></td>
+            <td colspan="2" id="maxYd50"></td>
+            <td colspan="2" id="maxYd60"></td>
+            <td colspan="2" id="maxYd70"></td>
+        </tr>
+    </table>
+    <br>
+    <!-- table3 -->
+    <table class="dataTable">
+        <tr>
+            <td>각도</td>
+            <td>41</td>
+            <td>42</td>
+            <td>43</td>
+            <td>44</td>
+            <td>45</td>
+            <td>46</td>
+            <td>47</td>
+            <td>48</td>
+            <td>49</td>
+        </tr>
+        <tr>
+            <td>도달 거리 x(cm)</td>
+            <td><input type="number" id="reachd41"/></td>
+            <td><input type="number" id="reachd42"/></td>
+            <td><input type="number" id="reachd43"/></td>
+            <td><input type="number" id="reachd44"/></td>
+            <td><input type="number" id="reachd45"/></td>
+            <td><input type="number" id="reachd46"/></td>
+            <td><input type="number" id="reachd47"/></td>
+            <td><input type="number" id="reachd48"/></td>
+            <td><input type="number" id="reachd49"/></td>
+        </tr>
+        <tr>
+            <td>최대도달 각도</td>
+            <td colspan="3" id="maxDegree">&nbsp</td>
+            <td colspan="3">최대도달 거리</td>
+            <td colspan="3" id="maxReach">&nbsp</td>
+        </tr>
+    </table>
+</body>
+</html>
