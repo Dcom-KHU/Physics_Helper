@@ -35,6 +35,6 @@ exports.Login=(req,res)=>{
         .then(PWCheck)
         .catch((err)=>{
             console.log(err)
-            res.status(500).json(err.message|err)
+            res.status(500).json({message:err['message']})
         })
 }
