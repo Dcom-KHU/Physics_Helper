@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Physics Helper</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#calculate").click(function(){
+                //table1
+                let L=Number($("#l_vard").val())
+                let M=Number($("#m_vard").val())
+                let H=Number($("#h_vard").val())
+                for(let i=1;i<=9;i++){
+                
+                
+                let T1=Number($(`#dt1${i}`).val())
+
+                let T2=Number($(`#dt2${i}`).val())
+                let V1=(L/T1).toFixed(3)
+                let V2=(L/T2).toFixed(3)
+                $(`#V1${i}`).text(V1)
+                $(`#V2${i}`).text(V2)
+                let KE0 = (0.5*M*(V1*V1)).toFixed(3)
+                let KE1 = (0.5*M*(V2*V2)).toFixed(3)
+                $(`#KE0${i}`).text(KE0)
+                $(`#KE1${i}`).text(KE1)
+                let DIFKE = (KE1-KE0).toFixed(3)
+                $(`#DIFKE${i}`).text(DIFKE)
+                let DIFPE = (M*9.8*H).toFixed(3)
+                $(`#DIFPE${i}`).text(DIFPE)
+                let ERR = ((Math.abs(DIFKE-DIFPE))/DIFPE*100).toFixed(2)
+                $(`#ERR${i}`).text(ERR)
+                }
+
+                //table2
+                L=Number($("#l_varm").val())
+                H=Number($("#h_varm").val())
+                M=Number($("#m_varm").val())
+                const M_list = [0,0.1,0.2]
+                for(let i=1;i<=9;i++){
+                let T1=Number($(`#mt1${i}`).val())
+                console.log(T1)
+                let T2=Number($(`#mt2${i}`).val())
+                console.log(T2)
+                let V1=(L/T1).toFixed(3)
+                let V2=(L/T2).toFixed(3)
+                $(`#MV1${i}`).text(V1)
+                $(`#MV2${i}`).text(V2)
+                let KE0 = (0.5*(M_list[parseInt((i-1)/3)]+M)*(V1*V1)).toFixed(3)
+                let KE1 = (0.5*(M_list[parseInt((i-1)/3)]+M)*(V2*V2)).toFixed(3)
+                $(`#MKE0${i}`).text(KE0)
+                $(`#MKE1${i}`).text(KE1)
+                let DIFKE = (KE1-KE0).toFixed(3)
+                $(`#MDIFKE${i}`).text(DIFKE)
+                let DIFPE = ((M_list[parseInt((i-1)/3)]+M)*9.8*H).toFixed(3)
+                $(`#MDIFPE${i}`).text(DIFPE)
+                let ERR = ((Math.abs(DIFKE-DIFPE))/DIFPE*100).toFixed(2)
+                $(`#MERR${i}`).text(ERR)
+                }
+
+                 //table2
+                L=Number($("#l_varh").val())
+                M=Number($("#m_varh").val())
+                const H_list = [0.08,0.1,0.12]
+                for(let i=1;i<=9;i++){
+                let T1=Number($(`#ht1${i}`).val())
+                console.log(T1)
+                let T2=Number($(`#ht2${i}`).val())
+                console.log(T2)
+                let V1=(L/T1).toFixed(3)
+                let V2=(L/T2).toFixed(3)
+                $(`#HV1${i}`).text(V1)
+                $(`#HV2${i}`).text(V2)
+                let KE0 = (0.5*M*(V1*V1)).toFixed(3)
+                let KE1 = (0.5*M*(V2*V2)).toFixed(3)
+                $(`#HKE0${i}`).text(KE0)
+                $(`#HKE1${i}`).text(KE1)
+                let DIFKE = (KE1-KE0).toFixed(3)
+                $(`#HDIFKE${i}`).text(DIFKE)
+                let DIFPE = (M*9.8*(H_list[parseInt((i-1)/3)])).toFixed(3)
+                $(`#HDIFPE${i}`).text(DIFPE)
+                let ERR = ((Math.abs(DIFKE-DIFPE))/DIFPE*100).toFixed(3)
+                $(`#HERR${i}`).text(ERR)
+                }
+
+
+
+                
+            })
+            $("#clear").click(function(){
+                $("#l_vard").val('')  
+                $("#m_vard").val('')    
+                $("#h_vard").val('') 
+                $("#l_varm").val('')
+                $("#h_varm").val('')
+                $("#m_varm").val('')
+                $("#l_varh").val('')
+                $("#m_varh").val('')
+                $("#d_varm").val('')
+                $("#d_varh").val('')
+                for(let i=1;i<=9;i++){
+                $(`#dt1${i}`).val('')
+                $(`#dt2${i}`).val('')
+                $(`#V1${i}`).text('')
+                $(`#V2${i}`).text('')
+                $(`#KE0${i}`).text('')
+                $(`#KE1${i}`).text('')
+                $(`#DIFKE${i}`).text('')
+                $(`#DIFPE${i}`).text('')
+                $(`#ERR${i}`).text('')
+                $(`#mt1${i}`).val('')
+                $(`#mt2${i}`).val('')
+                $(`#MV1${i}`).text('')
+                $(`#MV2${i}`).text('')
+                $(`#MKE0${i}`).text('')
+                $(`#MKE1${i}`).text('')
+                $(`#MDIFKE${i}`).text('')
+                $(`#MDIFPE${i}`).text('')
+                $(`#MERR${i}`).text('')
+                $(`#ht1${i}`).val('')
+                $(`#ht2${i}`).val('')
+                $(`#HV1${i}`).text('')
+                $(`#HV2${i}`).text('')
+                $(`#HKE0${i}`).text('')
+                $(`#HKE1${i}`).text('')
+                $(`#HDIFKE${i}`).text('')
+                $(`#HDIFPE${i}`).text('')
+                $(`#HERR${i}`).text('')
+                
+                
+                
+                }
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <h1>역학적 에너지 보존 실험</h1>
+    <input type="button" id="calculate" value="모두 계산하기"/>
+    <input type="button" id="clear" value="모두 지우기"/>
+    <!-- table1 -->
+    <h3>거리 D가 변할 때</h3>
+    <table class="dataTable" id="data1">
+        <tr>
+            <td>L[m]</td>
+            <td><input id="l_vard" type="number"/></td>
+            <td>m[kg]</td>
+            <td><input id="m_vard" type="number"/></td>
+            <td>h[m]</td>
+            <td><input id="h_vard" type="number"/></td> 
+        </tr>
+        <tr>
+            <td rowspan="2">m[g]</td>
+            <td rowspan="2">t1</td>
+            <td rowspan="2">t2</td>
+            <td rowspan="2">v1</td>
+            <td rowspan="2">v2</td>
+            <td colspan="2">운동 E</td>
+            <td>운동 E 변화량</td>
+            <td>위치 E 변화량</td>
+            <td rowspan="2">오차율</td>
+        </tr>
+        <tr>
+            <td>처음</td>
+            <td>나중</td>
+            <td>ΔEk</td>
+            <td>ΔEp</td>
+
+        </tr>
+        <tr>
+                <td rowspan="3">0</td>
+                <td><input id="dt11" type="number"/></td>
+                <td><input id="dt21" type="number"/></td>
+                <td id="V11"></td>
+                <td id="V21"></td>
+                <td id="KE01"></td>
+                <td id="KE11"></td>
+                <td id="DIFKE1"></td>
+                <td id="DIFPE1"></td>
+                <td id="ERR1"></td>
+        </tr>
+        <tr>
+                <td><input id="dt12" type="number"/></td>
+                <td><input id="dt22" type="number"/></td>
+                <td id="V12"></td>
+                <td id="V22"></td>
+                <td id="KE02"></td>
+                <td id="KE12"></td>
+                <td id="DIFKE2"></td>
+                <td id="DIFPE2"></td>
+                <td id="ERR2"></td>
+        </tr>
+        <tr>
+                <td><input id="dt13" type="number"/></td>
+                <td><input id="dt23" type="number"/></td>
+                <td id="V13"></td>
+                <td id="V23"></td>
+                <td id="KE03"></td>
+                <td id="KE13"></td>
+                <td id="DIFKE3"></td>
+                <td id="DIFPE3"></td>
+                <td id="ERR3"></td>
+        </tr>
+
+        <tr>
+                <td rowspan="3">100</td>
+                <td><input id="dt14" type="number"/></td>
+                <td><input id="dt24" type="number"/></td>
+                <td id="V14"></td>
+                <td id="V24"></td>
+                <td id="KE04"></td>
+                <td id="KE14"></td>
+                <td id="DIFKE4"></td>
+                <td id="DIFPE4"></td>
+                <td id="ERR4"></td>
+        </tr>
+        <tr>
+                <td><input id="dt15" type="number"/></td>
+                <td><input id="dt25" type="number"/></td>
+                <td id="V15"></td>
+                <td id="V25"></td>
+                <td id="KE05"></td>
+                <td id="KE15"></td>
+                <td id="DIFKE5"></td>
+                <td id="DIFPE5"></td>
+                <td id="ERR5"></td>
+        </tr>
+        <tr>
+                <td><input id="dt16" type="number"/></td>
+                <td><input id="dt26" type="number"/></td>
+                <td id="V16"></td>
+                <td id="V26"></td>
+                <td id="KE06"></td>
+                <td id="KE16"></td>
+                <td id="DIFKE6"></td>
+                <td id="DIFPE6"></td>
+                <td id="ERR6"></td>
+        </tr>
+
+        <tr>
+                <td rowspan="3">200</td>
+                <td><input id="dt17" type="number"/></td>
+                <td><input id="dt27" type="number"/></td>
+                <td id="V17"></td>
+                <td id="V27"></td>
+                <td id="KE07"></td>
+                <td id="KE17"></td>
+                <td id="DIFKE7"></td>
+                <td id="DIFPE7"></td>
+                <td id="ERR7"></td>
+        </tr>
+        <tr>
+                <td><input id="dt18" type="number"/></td>
+                <td><input id="dt28" type="number"/></td>
+                <td id="V18"></td>
+                <td id="V28"></td>
+                <td id="KE08"></td>
+                <td id="KE18"></td>
+                <td id="DIFKE8"></td>
+                <td id="DIFPE8"></td>
+                <td id="ERR8"></td>
+        </tr>
+        <tr>
+                <td><input id="dt19" type="number"/></td>
+                <td><input id="dt29" type="number"/></td>
+                <td id="V19"></td>
+                <td id="V29"></td>
+                <td id="KE09"></td>
+                <td id="KE19"></td>
+                <td id="DIFKE9"></td>
+                <td id="DIFPE9"></td>
+                <td id="ERR9"></td>
+        </tr>
+
+
+    </table>
+    <br>
+    <!-- table2 -->
+    <h3>질량 m이 변할 때</h3>
+    <table class="dataTable" id="data2">
+            <tr>
+                <td>L[m]</td>
+                <td><input id="l_varm" type="number"/></td>
+                <td>D[m]</td>
+                <td><input id="d_varm" type="number"/></td>
+                <td>h[m]</td>
+                <td><input id="h_varm" type="number"/></td> 
+                <td>m[Kg]</td>
+                <td><input id="m_varm" type="number"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2">D[m]</td>
+                <td rowspan="2">t1</td>
+                <td rowspan="2">t2</td>
+                <td rowspan="2">V1</td>
+                <td rowspan="2">V2</td>
+                <td colspan="2">운동 E</td>
+                <td>운동 E 변화량</td>
+                <td>위치 E 변화량</td>
+                <td rowspan="2">오차율</td>
+            </tr>
+            <tr>
+                <td>처음</td>
+                <td>나중</td>
+                <td>ΔEk</td>
+                <td>ΔEp</td>
+    
+            </tr>
+            <tr>
+                    <td rowspan="3">1</td>
+                    <td><input id="mt11" type="number"/></td>
+                    <td><input id="mt21" type="number"/></td>
+                    <td id="MV11"></td>
+                    <td id="MV21"></td>
+                    <td id="MKE01"></td>
+                    <td id="MKE11"></td>
+                    <td id="MDIFKE1"></td>
+                    <td id="MDIFPE1"></td>
+                    <td id="MERR1"></td>
+            </tr>
+            <tr>
+                    <td><input id="mt12" type="number"/></td>
+                    <td><input id="mt22" type="number"/></td>
+                    <td id="MV12"></td>
+                    <td id="MV22"></td>
+                    <td id="MKE02"></td>
+                    <td id="MKE12"></td>
+                    <td id="MDIFKE2"></td>
+                    <td id="MDIFPE2"></td>
+                    <td id="MERR2"></td>
+            </tr>
+            <tr>
+                    <td><input id="mt13" type="number"/></td>
+                    <td><input id="mt23" type="number"/></td>
+                    <td id="MV13"></td>
+                    <td id="MV23"></td>
+                    <td id="MKE03"></td>
+                    <td id="MKE13"></td>
+                    <td id="MDIFKE3"></td>
+                    <td id="MDIFPE3"></td>
+                    <td id="MERR3"></td>
+            </tr>
+    
+            <tr>
+                    <td rowspan="3">0.7</td>
+                    <td><input id="mt14" type="number"/></td>
+                    <td><input id="mt24" type="number"/></td>
+                    <td id="MV14"></td>
+                    <td id="MV24"></td>
+                    <td id="MKE04"></td>
+                    <td id="MKE14"></td>
+                    <td id="MDIFKE4"></td>
+                    <td id="MDIFPE4"></td>
+                    <td id="MERR4"></td>
+            </tr>
+            <tr>
+                    <td><input id="mt15" type="number"/></td>
+                    <td><input id="mt25" type="number"/></td>
+                    <td id="MV15"></td>
+                    <td id="MV25"></td>
+                    <td id="MKE05"></td>
+                    <td id="MKE15"></td>
+                    <td id="MDIFKE5"></td>
+                    <td id="MDIFPE5"></td>
+                    <td id="MERR5"></td>
+            </tr>
+            <tr>
+                    <td><input id="mt16" type="number"/></td>
+                    <td><input id="mt26" type="number"/></td>
+                    <td id="MV16"></td>
+                    <td id="MV26"></td>
+                    <td id="MKE06"></td>
+                    <td id="MKE16"></td>
+                    <td id="MDIFKE6"></td>
+                    <td id="MDIFPE6"></td>
+                    <td id="MERR6"></td>
+            </tr>
+    
+            <tr>
+                    <td rowspan="3">0.5</td>
+                    <td><input id="mt17" type="number"/></td>
+                    <td><input id="mt27" type="number"/></td>
+                    <td id="MV17"></td>
+                    <td id="MV27"></td>
+                    <td id="MKE07"></td>
+                    <td id="MKE17"></td>
+                    <td id="MDIFKE7"></td>
+                    <td id="MDIFPE7"></td>
+                    <td id="MERR7"></td>
+            </tr>
+            <tr>
+                    <td><input id="mt18" type="number"/></td>
+                    <td><input id="mt28" type="number"/></td>
+                    <td id="MV18"></td>
+                    <td id="MV28"></td>
+                    <td id="MKE08"></td>
+                    <td id="MKE18"></td>
+                    <td id="MDIFKE8"></td>
+                    <td id="MDIFPE8"></td>
+                    <td id="MERR8"></td>
+            </tr>
+            <tr>
+                    <td><input id="mt19" type="number"/></td>
+                    <td><input id="mt29" type="number"/></td>
+                    <td id="MV19"></td>
+                    <td id="MV29"></td>
+                    <td id="MKE09"></td>
+                    <td id="MKE19"></td>
+                    <td id="MDIFKE9"></td>
+                    <td id="MDIFPE9"></td>
+                    <td id="MERR9"></td>
+            </tr>
+    
+    
+        </table>
+        <!-- table3 -->
+        <br>
+        <h3>높이 h가 변할 때</h3>
+        
+        <table class="dataTable" id=data2>
+                <tr>
+                    <td>L[m]</td>
+                    <td><input id="l_varh" type="number"/></td>
+                    <td>D[m]</td>
+                    <td><input id="d_varh" type="number"/></td>
+                    <td>m[kg]</td>
+                    <td><input id="m_varh" type="number"/></td> 
+                </tr>
+                <tr>
+                        <td rowspan="2">D[m]</td>
+                        <td rowspan="2">t1</td>
+                        <td rowspan="2">t2</td>
+                        <td rowspan="2">V1</td>
+                        <td rowspan="2">V2</td>
+                        <td colspan="2">운동 E</td>
+                        <td>운동 E 변화량</td>
+                        <td>위치 E 변화량</td>
+                        <td rowspan="2">오차율</td>
+                    </tr>
+                    <tr>
+                        <td>처음</td>
+                        <td>나중</td>
+                        <td>ΔEk</td>
+                        <td>ΔEp</td>
+            
+                    </tr>
+                    <tr>
+                            <td rowspan="3">1</td>
+                            <td><input id="ht11" type="number"/></td>
+                            <td><input id="ht21" type="number"/></td>
+                            <td id="HV11"></td>
+                            <td id="HV21"></td>
+                            <td id="HKE01"></td>
+                            <td id="HKE11"></td>
+                            <td id="HDIFKE1"></td>
+                            <td id="HDIFPE1"></td>
+                            <td id="HERR1"></td>
+                    </tr>
+                    <tr>
+                            <td><input id="ht12" type="number"/></td>
+                            <td><input id="ht22" type="number"/></td>
+                            <td id="HV12"></td>
+                            <td id="HV22"></td>
+                            <td id="HKE02"></td>
+                            <td id="HKE12"></td>
+                            <td id="HDIFKE2"></td>
+                            <td id="HDIFPE2"></td>
+                            <td id="HERR2"></td>
+                    </tr>
+                    <tr>
+                            <td><input id="ht13" type="number"/></td>
+                            <td><input id="ht23" type="number"/></td>
+                            <td id="HV13"></td>
+                            <td id="HV23"></td>
+                            <td id="HKE03"></td>
+                            <td id="HKE13"></td>
+                            <td id="HDIFKE3"></td>
+                            <td id="HDIFPE3"></td>
+                            <td id="HERR3"></td>
+                    </tr>
+            
+                    <tr>
+                            <td rowspan="3">0.7</td>
+                            <td><input id="ht14" type="number"/></td>
+                            <td><input id="ht24" type="number"/></td>
+                            <td id="HV14"></td>
+                            <td id="HV24"></td>
+                            <td id="HKE04"></td>
+                            <td id="HKE14"></td>
+                            <td id="HDIFKE4"></td>
+                            <td id="HDIFPE4"></td>
+                            <td id="HERR4"></td>
+                    </tr>
+                    <tr>
+                            <td><input id="ht15" type="number"/></td>
+                            <td><input id="ht25" type="number"/></td>
+                            <td id="HV15"></td>
+                            <td id="HV25"></td>
+                            <td id="HKE05"></td>
+                            <td id="HKE15"></td>
+                            <td id="HDIFKE5"></td>
+                            <td id="HDIFPE5"></td>
+                            <td id="HERR5"></td>
+                    </tr>
+                    <tr>
+                            <td><input id="ht16" type="number"/></td>
+                            <td><input id="ht26" type="number"/></td>
+                            <td id="HV16"></td>
+                            <td id="HV26"></td>
+                            <td id="HKE06"></td>
+                            <td id="HKE16"></td>
+                            <td id="HDIFKE6"></td>
+                            <td id="HDIFPE6"></td>
+                            <td id="HERR6"></td>
+                    </tr>
+            
+                    <tr>
+                            <td rowspan="3">0.5</td>
+                            <td><input id="ht17" type="number"/></td>
+                            <td><input id="ht27" type="number"/></td>
+                            <td id="HV17"></td>
+                            <td id="HV27"></td>
+                            <td id="HKE07"></td>
+                            <td id="HKE17"></td>
+                            <td id="HDIFKE7"></td>
+                            <td id="HDIFPE7"></td>
+                            <td id="HERR7"></td>
+                    </tr>
+                    <tr>
+                            <td><input id="ht18" type="number"/></td>
+                            <td><input id="ht28" type="number"/></td>
+                            <td id="HV18"></td>
+                            <td id="HV28"></td>
+                            <td id="HKE08"></td>
+                            <td id="HKE18"></td>
+                            <td id="HDIFKE8"></td>
+                            <td id="HDIFPE8"></td>
+                            <td id="HERR8"></td>
+                    </tr>
+                    <tr>
+                            <td><input id="ht19" type="number"/></td>
+                            <td><input id="ht29" type="number"/></td>
+                            <td id="HV19"></td>
+                            <td id="HV29"></td>
+                            <td id="HKE09"></td>
+                            <td id="HKE19"></td>
+                            <td id="HDIFKE9"></td>
+                            <td id="HDIFPE9"></td>
+                            <td id="HERR9"></td>
+                    </tr>
+            
+            
+                </table>
+</body>
+</html>
