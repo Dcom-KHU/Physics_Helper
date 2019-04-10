@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Physics Helper</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script>
         $(document).ready(function(){
             $("#calculate").click(function(){
@@ -88,11 +91,14 @@
     </script>
 </head>
 <body>
+        <div class="container">
+                <div class="row">
     <h1>포물체 운동 실험</h1>
-    <input type="button" id="calculate" value="모두 계산하기"/>
-    <input type="button" id="clear" value="모두 지우기"/>
+    <input type="button" class ="btn btn-default" id="calculate" value="계산하기"/>
+    <input type="button" class = "btn btn-default" id="clear" value="지우기"/>
     <!-- table1 -->
-    <table class="dataTable">
+    <div class="table-responsive">
+    <table class="dataTable table table-striped table-bordered table-hover">
         <tr>
             <td>횟수</td>
             <td>1회</td>
@@ -107,20 +113,22 @@
         </tr>
         <tr>
             <td>측정값 t</td>
-            <td><input id="t1" type="number"/></td>
-            <td><input id="t2" type="number"/></td>
-            <td><input id="t3" type="number"/></td>
-            <td><input id="t4" type="number"/></td>
-            <td><input id="t5" type="number"/></td>
-            <td><input id="t6" type="number"/></td>
-            <td><input id="t7" type="number"/></td>
-            <td><input id="t8" type="number"/></td>
+            <td><input id="t1" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t2" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t3" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t4" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t5" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t6" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t7" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t8" class="form-control form-control-sm" type="number"/></td>
 
             <td id="averageT"></td>
         </tr>
     </table>
+    
     <br>
-    <table class="resultTable">
+    
+    <table class="resultTable table table-striped table-bordered table-hover">
         <tr>
             <td>Photogate Head<br>사이의 거리 L</td>
             <td><input type="number" id="L"></td>
@@ -128,9 +136,10 @@
             <td id="v0">&nbsp&nbsp&nbsp</td>
         </tr>
     </table>
+
     <br>
     <!-- table2 -->
-    <table class="dataTable">
+    <table class="dataTable table table-striped table-bordered table-hover">
         <tr>
             <td>발사각도</td>
             <td colspan="2">20</td>
@@ -157,48 +166,48 @@
         </tr>
         <tr>
             <td>1회</td>
-            <td><input id="x1d20" type="number"/></td>
-            <td><input id="t1d20" type="number"/></td>
-            <td><input id="x1d30" type="number"/></td>
-            <td><input id="t1d30" type="number"/></td>
-            <td><input id="x1d40" type="number"/></td>
-            <td><input id="t1d40" type="number"/></td>
-            <td><input id="x1d50" type="number"/></td>
-            <td><input id="t1d50" type="number"/></td>
-            <td><input id="x1d60" type="number"/></td>
-            <td><input id="t1d60" type="number"/></td>
-            <td><input id="x1d70" type="number"/></td>
-            <td><input id="t1d70" type="number"/></td>
+            <td><input id="x1d20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t1d20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x1d30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t1d30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x1d40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t1d40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x1d50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t1d50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x1d60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t1d60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x1d70" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t1d70" class="form-control form-control-sm" type="number"/></td>
         </tr>
         <tr>
             <td>2회</td>
-            <td><input id="x2d20" type="number"/></td>
-            <td><input id="t2d20" type="number"/></td>
-            <td><input id="x2d30" type="number"/></td>
-            <td><input id="t2d30" type="number"/></td>
-            <td><input id="x2d40" type="number"/></td>
-            <td><input id="t2d40" type="number"/></td>
-            <td><input id="x2d50" type="number"/></td>
-            <td><input id="t2d50" type="number"/></td>
-            <td><input id="x2d60" type="number"/></td>
-            <td><input id="t2d60" type="number"/></td>
-            <td><input id="x2d70" type="number"/></td>
-            <td><input id="t2d70" type="number"/></td>
+            <td><input id="x2d20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t2d20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x2d30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t2d30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x2d40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t2d40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x2d50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t2d50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x2d60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t2d60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x2d70" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t2d70" class="form-control form-control-sm" type="number"/></td>
         </tr>
         <tr>
             <td>3회</td>
-            <td><input id="x3d20" type="number"/></td>
-            <td><input id="t3d20" type="number"/></td>
-            <td><input id="x3d30" type="number"/></td>
-            <td><input id="t3d30" type="number"/></td>
-            <td><input id="x3d40" type="number"/></td>
-            <td><input id="t3d40" type="number"/></td>
-            <td><input id="x3d50" type="number"/></td>
-            <td><input id="t3d50" type="number"/></td>
-            <td><input id="x3d60" type="number"/></td>
-            <td><input id="t3d60" type="number"/></td>
-            <td><input id="x3d70" type="number"/></td>
-            <td><input id="t3d70" type="number"/></td>
+            <td><input id="x3d20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t3d20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x3d30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t3d30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x3d40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t3d40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x3d50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t3d50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x3d60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t3d60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="x3d70" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="t3d70" class="form-control form-control-sm" type="number"/></td>
         </tr>
         <tr>
             <td>평균값</td>
@@ -217,18 +226,18 @@
         </tr>
         <tr>
             <td>이론값</td>
-            <td><input id="idealXd20" type="number"/></td>
-            <td><input id="idealTd20" type="number"/></td>
-            <td><input id="idealXd30" type="number"/></td>
-            <td><input id="idealTd30" type="number"/></td>
-            <td><input id="idealXd40" type="number"/></td>
-            <td><input id="idealTd40" type="number"/></td>
-            <td><input id="idealXd50" type="number"/></td>
-            <td><input id="idealTd50" type="number"/></td>
-            <td><input id="idealXd60" type="number"/></td>
-            <td><input id="idealTd60" type="number"/></td>
-            <td><input id="idealXd70" type="number"/></td>
-            <td><input id="idealTd70" type="number"/></td>
+            <td><input id="idealXd20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealTd20" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealXd30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealTd30" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealXd40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealTd40" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealXd50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealTd50" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealXd60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealTd60" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealXd70" class="form-control form-control-sm" type="number"/></td>
+            <td><input id="idealTd70" class="form-control form-control-sm" type="number"/></td>
         </tr>
         <tr>
             <td>오차율(%)</td>
@@ -257,7 +266,7 @@
     </table>
     <br>
     <!-- table3 -->
-    <table class="dataTable">
+    <table class="dataTable table table-striped table-bordered table-hover">
         <tr>
             <td>각도</td>
             <td>41</td>
@@ -272,15 +281,15 @@
         </tr>
         <tr>
             <td>도달 거리 x(cm)</td>
-            <td><input type="number" id="reachd41"/></td>
-            <td><input type="number" id="reachd42"/></td>
-            <td><input type="number" id="reachd43"/></td>
-            <td><input type="number" id="reachd44"/></td>
-            <td><input type="number" id="reachd45"/></td>
-            <td><input type="number" id="reachd46"/></td>
-            <td><input type="number" id="reachd47"/></td>
-            <td><input type="number" id="reachd48"/></td>
-            <td><input type="number" id="reachd49"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd41"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd42"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd43"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd44"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd45"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd46"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd47"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd48"/></td>
+            <td><input type="number" class="form-control form-control-sm" id="reachd49"/></td>
         </tr>
         <tr>
             <td>최대도달 각도</td>
@@ -289,5 +298,9 @@
             <td colspan="3" id="maxReach">&nbsp</td>
         </tr>
     </table>
+    </div>
+    </div>
+</div>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
