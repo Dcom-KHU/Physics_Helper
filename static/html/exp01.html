@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Physics Helper</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
     <script>
         $(document).ready(function(){
             $('#calculate').click(function(){
@@ -40,10 +45,14 @@
     </script>
 </head>
 <body>
+    <div class="container">
+        <div class="row">
+
     <h1>인터페이스 실험</h1>
-    <input type="button" id="calculate" value="모두 계산하기"/>
-    <input type="button" id="clear" value="모두 지우기"/>
-    <table class="dataTable" >
+    <input type="button" class ="btn btn-default" id="calculate" value="계산하기"/>
+    <input type="button" class = "btn btn-default" id="clear" value="지우기"/>
+    <div class="table-responsive">
+    <table class="dataTable table table-striped table-bordered table-hover" >
         <tr>
             <td>높이 h[m]</td>
             <td colspan="2"><input id="height" type="number"/></td>
@@ -90,8 +99,10 @@
             <td><input id="plasticT5" type="number"/></td>
         </tr>
     </table>
+</div>
+<div class="table-responsive">
     <br>
-    <table class="resultTable">
+    <table class="resultTable table table-striped table-bordered table-hover">
         <tr>
             <td>구슬종류</td>
             <td>t 평균값[s]</td>
@@ -117,5 +128,12 @@
             <td><p id="plasticDifference"></p></td>
         </tr>
     </table>
+</div>  
+</div>
+</div>
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+   
+    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

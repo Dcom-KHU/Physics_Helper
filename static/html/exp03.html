@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Physics Helper</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script>
         $(document).ready(function(){
             $("#calculate").click(function(){
@@ -88,11 +91,14 @@
     </script>
 </head>
 <body>
+        <div class="container">
+                <div class="row">
     <h1>포물체 운동 실험</h1>
-    <input type="button" id="calculate" value="모두 계산하기"/>
-    <input type="button" id="clear" value="모두 지우기"/>
+    <input type="button" class ="btn btn-default" id="calculate" value="계산하기"/>
+    <input type="button" class = "btn btn-default" id="clear" value="지우기"/>
     <!-- table1 -->
-    <table class="dataTable">
+    <div class="table-responsive">
+    <table class="dataTable table table-striped table-bordered table-hover">
         <tr>
             <td>횟수</td>
             <td>1회</td>
@@ -119,8 +125,10 @@
             <td id="averageT"></td>
         </tr>
     </table>
+    
     <br>
-    <table class="resultTable">
+    
+    <table class="resultTable table table-striped table-bordered table-hover">
         <tr>
             <td>Photogate Head<br>사이의 거리 L</td>
             <td><input type="number" id="L"></td>
@@ -128,11 +136,12 @@
             <td id="v0">&nbsp&nbsp&nbsp</td>
         </tr>
     </table>
+
     <br>
     <!-- table2 -->
-    <table class="dataTable">
+    <table class="dataTable table table-striped table-bordered table-hover">
         <tr>
-            <td>발사각도</td>
+            <th>발사각도</th>
             <td colspan="2">20</td>
             <td colspan="2">30</td>
             <td colspan="2">40</td>
@@ -257,7 +266,7 @@
     </table>
     <br>
     <!-- table3 -->
-    <table class="dataTable">
+    <table class="dataTable table table-striped table-bordered table-hover">
         <tr>
             <td>각도</td>
             <td>41</td>
@@ -289,5 +298,9 @@
             <td colspan="3" id="maxReach">&nbsp</td>
         </tr>
     </table>
+    </div>
+    </div>
+</div>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

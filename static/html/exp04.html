@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Physics Helper</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script>
         $(document).ready(function(){
             $("#calculate").click(function(){
@@ -138,12 +141,15 @@
     </script>
 </head>
 <body>
+                <div class="container">
+                                <div class="row">
     <h1>역학적 에너지 보존 실험</h1>
-    <input type="button" id="calculate" value="모두 계산하기"/>
-    <input type="button" id="clear" value="모두 지우기"/>
+    <input type="button" class ="btn btn-default" id="calculate" value="계산하기"/>
+    <input type="button" class = "btn btn-default" id="clear" value="지우기"/>
     <!-- table1 -->
     <h3>거리 D가 변할 때</h3>
-    <table class="dataTable" id="data1">
+    <div class="table-responsive">
+    <table class="dataTable table table-striped table-bordered table-hover" id="data1">
         <tr>
             <td>L[m]</td>
             <td><input id="l_vard" type="number"/></td>
@@ -280,7 +286,7 @@
     <br>
     <!-- table2 -->
     <h3>질량 m이 변할 때</h3>
-    <table class="dataTable" id="data2">
+    <table class="dataTable table table-striped table-bordered table-hover" id="data2">
             <tr>
                 <td>L[m]</td>
                 <td><input id="l_varm" type="number"/></td>
@@ -420,7 +426,7 @@
         <br>
         <h3>높이 h가 변할 때</h3>
         
-        <table class="dataTable" id=data2>
+        <table class="dataTable table table-striped table-bordered table-hover" id=data2>
                 <tr>
                     <td>L[m]</td>
                     <td><input id="l_varh" type="number"/></td>
@@ -554,5 +560,9 @@
             
             
                 </table>
+                </div>
+                </div>
+                </div>
+                <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
