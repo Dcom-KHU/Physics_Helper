@@ -3,10 +3,12 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 const session = require('express-session')
 const path = require('path')
+const morgan = require('morgan')
+
 require('dotenv').config()
 
 const app=express()
-
+app.use(morgan('combined'))
 app.use('/static',express.static(path.join(__dirname,'/static')))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
