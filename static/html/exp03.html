@@ -37,8 +37,10 @@
                     averageT=(tSum/3).toFixed(5)
                     $(`#averageXd${degree1[i]}`).text(averageX)
                     $(`#averageTd${degree1[i]}`).text(averageT)
-                    let idealX=Number($(`#idealXd${degree1[i]}`).val())
-                    let idealT=Number($(`#idealTd${degree1[i]}`).val())
+                    let idealX=(Math.pow(v0,2)*Math.sin(2*degree1[i]*(Math.PI/180))/9.8).toFixed(5)
+                    let idealT=(2*v0*Math.sin(degree1[i]*(Math.PI/180))/9.8).toFixed(5)
+                    $(`#idealXd${degree1[i]}`).text(idealX)
+                    $(`#idealTd${degree1[i]}`).text(idealT)
                     let differenceX=(Math.abs(averageX-idealX)/idealX*100).toFixed(3)
                     let differenceT=(Math.abs(averageT-idealT)/idealT*100).toFixed(3)
                     $(`#differenceXd${degree1[i]}`).text(differenceX)
@@ -226,18 +228,18 @@
         </tr>
         <tr>
             <td>이론값</td>
-            <td><input id="idealXd20" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealTd20" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealXd30" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealTd30" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealXd40" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealTd40" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealXd50" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealTd50" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealXd60" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealTd60" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealXd70" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="idealTd70" class="form-control form-control-sm" type="number"/></td>
+            <td id="idealXd20"></td>
+            <td id="idealTd20"></td>
+            <td id="idealXd30"></td>
+            <td id="idealTd30"></td>
+            <td id="idealXd40"></td>
+            <td id="idealTd40"></td>
+            <td id="idealXd50"></td>
+            <td id="idealTd50"></td>
+            <td id="idealXd60"></td>
+            <td id="idealTd60"></td>
+            <td id="idealXd70"></td>
+            <td id="idealTd70"></td>
         </tr>
         <tr>
             <td>오차율(%)</td>
