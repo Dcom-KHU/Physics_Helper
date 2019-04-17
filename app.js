@@ -4,6 +4,7 @@ const fs = require('fs')
 const session = require('express-session')
 const path = require('path')
 const morgan = require('morgan')
+const logger = require('./logger')
 
 require('dotenv').config()
 
@@ -36,6 +37,7 @@ app.get('/',(req,res)=>{
     }
 })
 app.use('/views',require('./views'))
+
 
 app.listen(process.env.SERVER_PORT ||3000,()=>{
     console.log('server is running on port '+process.env.SERVER_PORT)
