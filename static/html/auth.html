@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Physics Helper</title>
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script>
         function onEnterLogin(event) {
             let keyCode = event.keyCode;
@@ -40,10 +42,28 @@
     </script>
 </head>
 <body>
+<div class="container">
     <h1>Auth Page</h1>
     <br>
-    <h3>비밀번호를 입력해 주세요.</h3>
-    <input id="password" type="password" onkeydown="onEnterLogin(event)"/>
-    <input id="submit" type="button" value="확인" />
+    <h3 style="text-align: center;">비밀번호를 입력해 주세요.</h3>
+    <div class="row">
+        <div class="col-lg-4 col-xs-4"></div>
+        <div class="col-lg-4 col-xs-4">
+            <input id="password" class="form-control form-control-sm" type="password" onkeydown="onEnterLogin(event)"/>
+        </div>
+        <div class="col-lg-4 col-xs-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-xs-4"></div>
+        <div class="col-lg-4 col-xs-4">
+            <input id="submit" class="form-control form-control-sm" type="button" value="확인" />
+        </div>
+        <div class="col-lg-4 col-xs-4"></div>
+    </div>
+</div>
+<script src="js/bootstrap.min.js"></script>
 </body>
+<footer>
+    <p>github.com/Dcom-KHU/Physics_Helper</p>
+</footer>
 </html>

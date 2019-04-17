@@ -4,6 +4,7 @@ const fs = require('fs')
 const session = require('express-session')
 const path = require('path')
 const morgan = require('morgan')
+const logger = require('./logger')
 
 require('dotenv').config()
 
@@ -36,6 +37,9 @@ app.get('/',(req,res)=>{
     }
 })
 app.use('/views',require('./views'))
+app.use((req,res,next)=>{
+    res.status(404).send("페이지를 찾을 수 없습니다.\n" +"개발자에게 문의해주세요!")
+})
 
 app.listen(process.env.SERVER_PORT ||3000,()=>{
     console.log('server is running on port '+process.env.SERVER_PORT)
