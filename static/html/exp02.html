@@ -8,85 +8,75 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script>
-        $(document).ready(function(){
-            $('#calculate').click(function(){
-                let timeSum = 0
-                for(let i=1;i<=5;i++){
-                    timeSum+=Number($(`#T${i}`).val())
-                }
-                let averageTime = (timeSum/5).toFixed(5)
-                $(`#AverageT`).text(`${averageTime}`)
-                let G = (2/((averageTime*averageTime)*(Number($('#height').val())))).toFixed(5)
-                $(`#G`).text(G)
-                let difference=(Math.abs(G-9.8)/9.8*100).toFixed(2)
-                $(`#Difference`).text(difference)
-            })
-            
-            $('#clear').click(function(){
-                $('#height').val('')
-                for(let i=1;i<=5;i++){
-                    $(`#T${i}`).val('')
-                }
-                $(`#AverageT`).text('')
-                $(`#G`).text('')
-                $(`#Difference`).text('')
-
-            })
-        })
-    </script>
 </head>
 <body>
-        <div class="container">
-                <div class="row">
-    <h1>중력가속도 측정 실험</h1>
-    <input type="button" class ="btn btn-default" id="calculate" value="계산하기"/>
-    <input type="button" class = "btn btn-default" id="clear" value="지우기"/>
-    <div class="table-responsive">
-    <table class="dataTable table table-striped table-bordered table-hover" >
-        <tr>
-            <td>높이 h[m]</td>
-            <td><input id="height" class="form-control form-control-sm" type="number"/></td>
-        </tr>
-        <tr>
-            <td>1회</td>
-            <td>2회</td>
-            <td>3회</td>
-            <td>4회</td>
-            <td>5회</td>
-            <td>평균값</td>
-        </tr>
-        <tr>
+<div class="container">
+    <div class="row">
+        <h1>중력가속도 측정 실험</h1>
+        <input type="button" class="btn btn-default" id="calculate" value="계산하기" />
+        <input type="button" class="btn btn-default" id="clear" value="지우기" />
+        <div class="table-responsive">
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>높이 h[m]</td>
+                    <td>
+                        <input id="height" class="form-control form-control-sm" type="number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>1회</td>
+                    <td>2회</td>
+                    <td>3회</td>
+                    <td>4회</td>
+                    <td>5회</td>
+                    <td>평균값</td>
+                </tr>
+                <tr>
 
-            <td><input id="T1" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="T2" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="T3" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="T4" class="form-control form-control-sm" type="number"/></td>
-            <td><input id="T5" class="form-control form-control-sm" type="number"/></td>
-            <td><p id="AverageT"></p></td>
+                    <td>
+                        <input id="T1" class="form-control form-control-sm" type="number" />
+                    </td>
+                    <td>
+                        <input id="T2" class="form-control form-control-sm" type="number" />
+                    </td>
+                    <td>
+                        <input id="T3" class="form-control form-control-sm" type="number" />
+                    </td>
+                    <td>
+                        <input id="T4" class="form-control form-control-sm" type="number" />
+                    </td>
+                    <td>
+                        <input id="T5" class="form-control form-control-sm" type="number" />
+                    </td>
+                    <td>
+                        <p id="AverageT"></p>
+                    </td>
 
-        </tr>
+                </tr>
 
-    </table>
-</div>
-    <br>
-    <div class="table-responsive">
-    <table class="resultTable table table-striped table-bordered table-hover">
-        <tr>
-            <td>중력가속도 g[m/s^2]</td>
-            <td>오차율(%)</td>
-        </tr>
-        <tr>
-            <td><p id="G"></p></td>
-            <td><p id="Difference"></p></td>
-        </tr>
-    </table>
-    </div>
-    </div>
+            </table>
         </div>
-<script src="js/bootstrap.min.js"></script>
+        <br>
+        <div class="table-responsive">
+            <table class="resultTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>중력가속도 g[m/s^2]</td>
+                    <td>오차율(%)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="G"></p>
+                    </td>
+                    <td>
+                        <p id="Difference"></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>
+<script src="/static/js/exp02.js"></script>
+<script src="/static/js/footerLoader.js"></script>
 </body>
-<footer>
-    <p>github.com/Dcom-KHU/Physics_Helper</p>
-</footer>
 </html>
