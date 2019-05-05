@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics Helper</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script>
+        $(document).ready(function(){
+            let distances=[8,11,14,17,20]
+            let weights=[30,60,90,120,150]
+            $('#r1Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#r1Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('r1Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=distances[0]
+                        idealData.m=100+Number($('#M1').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'r1 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'r1 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#r2Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#r2Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('r2Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=distances[1]
+                        idealData.m=100+Number($('#M1').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'r2 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'r2 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#r3Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#r3Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('r3Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=distances[2]
+                        idealData.m=100+Number($('#M1').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'r3 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'r3 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#r4Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#r4Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('r4Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=distances[3]
+                        idealData.m=100+Number($('#M1').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'r4 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'r4 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#r5Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#r5Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('r5Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=distances[4]
+                        idealData.m=100+Number($('#M1').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'r5 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'r5 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#m1Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#m1Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('m1Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=15
+                        idealData.m=weights[0]+Number($('#M2').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'m1 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'m1 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#m2Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#m2Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('m2Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=15
+                        idealData.m=weights[1]+Number($('#M2').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'m2 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'m2 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#m3Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#m3Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('m3Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=15
+                        idealData.m=weights[2]+Number($('#M2').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'m3 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'m3 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#m4Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#m4Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('m4Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=15
+                        idealData.m=weights[3]+Number($('#M2').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'m4 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'m4 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+            $('#m5Draw').click(function(){
+                let formData=new FormData()
+                formData.append("file", $("#m5Text")[0].files[0])
+                console.log(JSON.stringify(formData))
+                $.ajax({
+                    type:'POST',
+                    url:'/api/centripetal',
+                    data:formData,
+                    enctype:'multipart/form-data',
+                    processData:false,
+                    contentType:false,
+                    cache:false,
+                    success:function(data){
+                        //console.log(data['result'])
+                        let ctx=document.getElementById('m1Result').getContext('2d')
+                        let forces=[]
+                        let velocities=[]
+                        for(let i=0;i<data['result'].length;i++){
+                            velocities[i]=Number(data['result'][i]['velocity'])
+                            forces[i]=Number(data['result'][i]['force'])
+                        }
+                        let maxVelocity=velocities[0]
+                        let idealData={}
+                        idealData.r=15
+                        idealData.m=weights[4]+Number($('#M2').val())
+                        idealData.maxVelocity=maxVelocity
+                        const stringIdealData=JSON.stringify(idealData)
+                        $.ajax({
+                            type:'POST',
+                            url:'/api/idealcentripetal',
+                            data:stringIdealData,
+                            dataType:'JSON',
+                            contentType:'application/json; charset=utf-8',
+                            traditional:true,
+                            processdata:false,
+                            success:function(idealResult){
+                                let idealVelocities=[]
+                                let idealForces=[]
+                                for(let i=0;i<idealResult['result'].length;i++){
+                                    idealVelocities[i]=Number(idealResult['result'][i]['velocity'])
+                                    idealForces[i]=Number(idealResult['result'][i]['force'])
+                                }
+                                forces.reverse()
+                                velocities.reverse()
+                                let myChart=new Chart(ctx,{
+                                    type:'line',
+                                    data:{
+                                        labels:velocities,
+                                        datasets:[{
+                                            label:'m5 실험값',
+                                            data:forces,
+                                            backgroundColor:[
+                                                'rgba(255, 99, 132, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                            ]
+                                        }, {
+                                            label:'m5 이론값',
+                                            data:idealForces,
+                                            backgroundColor:[
+                                                'rgba(0,0,255,0.2)'
+                                            ],
+                                            borderColor:[
+                                                'rgba(0,0,255,1)'
+                                            ]
+                                        }
+                                        ],
+                                    },
+                                })
+                            }
+                        })
+                    },
+                    error: function(){
+                        return false
+                    },
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>구심력 측정 실험</h1>
+            <input type="button" class ="btn btn-default" id="calculate" value="계산하기"/>
+            <input type="button" class = "btn btn-default" id="clear" value="지우기"/>
+            <!-- table1 -->
+            <h3>A. 물체의 질량 M을 고정하고, 회전 반지름 r을 변화시키는 경우</h3>
+            <div class="table-responsive">
+                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                    <tr>
+                        <td>사각블록 질량 M</td>
+                        <td><input id="M1" class="form-control form-control-sm" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td>추의 질량 m</td>
+                        <td>100g</td>
+                    </tr>
+                </table>
+                <table class="dataTable table table-striped table-bordered table-hover">
+                    <tr>
+                        <td>거리[cm]</td>
+                        <td>그래프</td>
+                        <td>실험 결과 파일</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>r1</td>
+                        <td><input id="r1Text" type="file"></td>
+                        <td><input id="r1Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>r2</td>
+                        <td><input id="r2Text" type="file"></td>
+                        <td><input id="r2Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>r3</td>
+                        <td><input id="r3Text" type="file"></td>
+                        <td><input id="r3Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>r4</td>
+                        <td><input id="r4Text" type="file"></td>
+                        <td><input id="r4Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>r5</td>
+                        <td><input id="r5Text" type="file"></td>
+                        <td><input id="r5Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                </table>
+                <br>
+                <canvas id="r1Result"></canvas>
+                <canvas id="r2Result"></canvas>
+                <canvas id="r3Result"></canvas>
+                <canvas id="r4Result"></canvas>
+                <canvas id="r5Result"></canvas>
+                <!-- table2 -->
+                <h3>B. 회전 반지름 r을 고정하고, 물체의 질량 M을 변화 시키는 경우</h3>
+                <table class="dataTable table table-striped table-bordered table-hover">
+                    <tr>
+                        <td>사각블록 질량 M</td>
+                        <td><input id="M2" class="form-control form-control-sm" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td>회전 반지름 r</td>
+                        <td>15cm</td>
+                    </tr>
+                </table>
+                <table class="dataTable table table-striped table-bordered table-hover">
+                    <tr>
+                        <td>추의 무게[g]</td>
+                        <td>그래프</td>
+                        <td>실험 결과 파일</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>m1</td>
+                        <td><input id="m1Text" type="file"></td>
+                        <td><input id="m1Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>60</td>
+                        <td>m2</td>
+                        <td><input id="m2Text" type="file"></td>
+                        <td><input id="m2Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>90</td>
+                        <td>m3</td>
+                        <td><input id="m3Text" type="file"></td>
+                        <td><input id="m3Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>120</td>
+                        <td>m4</td>
+                        <td><input id="m4Text" type="file"></td>
+                        <td><input id="m4Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                    <tr>
+                        <td>150</td>
+                        <td>m5</td>
+                        <td><input id="m5Text" type="file"></td>
+                        <td><input id="m5Draw" type="button" value="그래프 그리기"></td>
+                    </tr>
+                </table>
+                <canvas id="m1Result"></canvas>
+                <canvas id="m2Result"></canvas>
+                <canvas id="m3Result"></canvas>
+                <canvas id="m4Result"></canvas>
+                <canvas id="m5Result"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+<footer>
+    <p>github.com/Dcom-KHU/Physics_Helper</p>
+</footer>
+</html>
