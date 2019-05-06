@@ -717,7 +717,7 @@ $(document).ready(function(){
             cache:false,
             success:function(data){
                 //console.log(data['result'])
-                let ctx=document.getElementById('m1Result').getContext('2d')
+                let ctx=document.getElementById('m5Result').getContext('2d')
                 let forces=[]
                 let velocities=[]
                 for(let i=0;i<data['result'].length;i++){
