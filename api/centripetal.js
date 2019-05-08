@@ -23,11 +23,13 @@ exports.Centripetal=(req,res)=>{
         //console.log(data)
         let stringArr=data.split('\n')
         //console.log(stringArr)
+        stringArr.sort()
+        //console.log(stringArr)
         let forces=[]
         let velocities=[]
         let count=[]
         let last=-1
-        for(let i=2;i<stringArr.length;i++){
+        for(let i=1;i<stringArr.length-2;i++){
             //console.log(i-1)
             let velocity=Number(stringArr[i].substring(0,stringArr[i].indexOf('\t')))
             let force=Number(stringArr[i].substring(stringArr[i].indexOf('\t')+1,stringArr[i].indexOf('\r')))
@@ -38,24 +40,27 @@ exports.Centripetal=(req,res)=>{
             if (last===-1 || velocities[last]!==velocity){
                 last++
                 velocities[last]=velocity
-                count[last]=0
+                count[last]=1
                 forces[last]=force
             }
             else{
-                count[last]++
+                count[last]=count[last]+1
                 forces[last]+=force
             }
 
         }
         for(let i=0;i<last+1;i++){
+            //console.log(`${forces[i]}/${count[i]}\n`)
             forces[i]=Number((forces[i]/count[i]).toFixed(3))
-            //console.log(forces[i])
         }
         let result=[]
         for (let i=0;i<last+1;i++){
             result.push({velocity:velocities[i],force:forces[i]})
         }
-        //console.log(result)
+        result.sort((a,b)=>{
+            return a.velocity < b.velocity ? 1 : -1
+        })
+        console.log(result)
         return Promise.resolve(result)
     }
 
