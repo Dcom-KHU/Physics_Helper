@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics Helper</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>각운동량 보존 실험</h1>
+            <input type="button" class="btn btn-default" id="calculate" value="계산하기" />
+            <input type="button" class="btn btn-default" id="clear" value="지우기" />
+            <!-- table1 -->
+            <h3>A. 관성모멘트 I 측정</h3>
+            <h3>실험 1. 사각질량이 10cm에 위치했을 경우</h3>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>추+추걸이 질량 m</td>
+                    <td><input id="table1m" class="form-control form-control-sm" type="number" /></td>
+                    <td>회전축 반지름 r</td>
+                    <td><input id="table1r" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>횟수</td>
+                    <td>낙하거리 h</td>
+                    <td>낙하시간 t</td>
+                    <td>가속도 a</td>
+                    <td>장력 T</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input id="table1h1" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table1t1" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table1a1"></td>
+                    <td id="table1Te1"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input id="table1h2" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table1t2" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table1a2"></td>
+                    <td id="table1Te2"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input id="table1h3" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table1t3" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table1a3"></td>
+                    <td id="table1Te3"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input id="table1h4" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table1t4" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table1a4"></td>
+                    <td id="table1Te4"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input id="table1h5" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table1t5" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table1a5"></td>
+                    <td id="table1Te5"></td>
+                </tr>
+                <tr>
+                    <td>평균값</td>
+                    <td id="table1hAvr"></td>
+                    <td id="table1tAvr"></td>
+                    <td id="table1aAvr"></td>
+                    <td id="table1TeAvr"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>사각질량이 10cm에 위치할 때, 관성모멘트 I</td>
+                    <td id="table1I"></td>
+                </tr>
+            </table>
+            <!-- table2 -->
+            <h3>실험 2. 사각질량이 20cm에 위치했을 경우</h3>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>추+추걸이 질량 m</td>
+                    <td><input id="table2m" class="form-control form-control-sm" type="number" /></td>
+                    <td>회전축 반지름 r</td>
+                    <td><input id="table2r" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>횟수</td>
+                    <td>낙하거리 h</td>
+                    <td>낙하시간 t</td>
+                    <td>가속도 a</td>
+                    <td>장력 T</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input id="table2h1" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table2t1" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table2a1"></td>
+                    <td id="table2Te1"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input id="table2h2" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table2t2" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table2a2"></td>
+                    <td id="table2Te2"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input id="table2h3" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table2t3" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table2a3"></td>
+                    <td id="table2Te3"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input id="table2h4" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table2t4" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table2a4"></td>
+                    <td id="table2Te4"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input id="table2h5" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table2t5" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table2a5"></td>
+                    <td id="table2Te5"></td>
+                </tr>
+                <tr>
+                    <td>평균값</td>
+                    <td id="table2hAvr"></td>
+                    <td id="table2tAvr"></td>
+                    <td id="table2aAvr"></td>
+                    <td id="table2TeAvr"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>사각질량이 20cm에 위치할 때, 관성모멘트 I</td>
+                    <td id="table2I"></td>
+                </tr>
+            </table>
+            <!-- table3 -->
+            <h3>B. 각운동량 보존</h3>
+            <h3>실험 1. 사각질량의 각운동량 보존</h3>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>사각질량의 위치가 20cm일 때, 관성모멘트 I<sub>i</sub></td>
+                    <td id="table3Ii"></td>
+                    <td>사각질량의 위치가 10cm일 때, 관성모멘트 I<sub>i</sub></td>
+                    <td id="table3If"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>횟수</td>
+                    <td>t<sub>i</sub></td>
+                    <td>t<sub>f</sub></td>
+                    <td>w<sub>i</sub></td>
+                    <td>w<sub>f</sub></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input id="table3t1i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3t1f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w1i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w1f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input id="table3t2i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3t2f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w2i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w2f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input id="table3t3i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3t3f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w3i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w3f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input id="table3t4i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3t4f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w4i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w4f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input id="table3t5i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3t5f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w5i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table3w5f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>횟수</td>
+                    <td>I<sub>i</sub></td>
+                    <td>I<sub>f</sub></td>
+                    <td>각운동량 오차율(%)</td>
+                    <td>K<sub>i</sub></td>
+                    <td>K<sub>f</sub></td>
+                    <td>K<sub>fth</sub></td>
+                    <td>회전 운동E 오차율(%)</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td id="table3l1i"></td>
+                    <td id="table3l1f"></td>
+                    <td id="table3l1diff"></td>
+                    <td id="table3K1i"></td>
+                    <td id="table3K1f"></td>
+                    <td id="table3K1fth"></td>
+                    <td id="table3K1diff"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td id="table3l2i"></td>
+                    <td id="table3l2f"></td>
+                    <td id="table3l2diff"></td>
+                    <td id="table3K2i"></td>
+                    <td id="table3K2f"></td>
+                    <td id="table3K2fth"></td>
+                    <td id="table3K2diff"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td id="table3l3i"></td>
+                    <td id="table3l3f"></td>
+                    <td id="table3l3diff"></td>
+                    <td id="table3K3i"></td>
+                    <td id="table3K3f"></td>
+                    <td id="table3K3fth"></td>
+                    <td id="table3K3diff"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td id="table3l4i"></td>
+                    <td id="table3l4f"></td>
+                    <td id="table3l4diff"></td>
+                    <td id="table3K4i"></td>
+                    <td id="table3K4f"></td>
+                    <td id="table3K4fth"></td>
+                    <td id="table3K4diff"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td id="table3l5i"></td>
+                    <td id="table3l5f"></td>
+                    <td id="table3l5diff"></td>
+                    <td id="table3K5i"></td>
+                    <td id="table3K5f"></td>
+                    <td id="table3K5fth"></td>
+                    <td id="table3K5diff"></td>
+                </tr>
+            </table>
+            <!-- table4 -->
+            <h3>실험 2. 디스크와 링의 각운동량 보존</h3>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>M<sub>d</sub></td>
+                    <td>R</td>
+                    <td>M<sub>r</sub></td>
+                    <td>R<sub>1</sub></td>
+                    <td>R<sub>2</sub></td>
+                    <td>I<sub>i</sub></td>
+                    <td>I<sub>f</sub></td>
+                </tr>
+                <tr>
+                    <td><input id="table4Md" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4R" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4Mr" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4R1" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4R2" class="form-control form-control-sm" type="number" /></td>
+                    <td id="table4Ii1"></td>
+                    <td id="table4If1"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>디스크의 관성모멘트 I<sub>i</sub></td>
+                    <td id="table4Ii2"></td>
+                </tr>
+                <tr>
+                    <td>디스크와 링의 관성모멘트 I<sub>f</sub></td>
+                    <td id="table4If2"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>횟수</td>
+                    <td>t<sub>i</sub></td>
+                    <td>t<sub>f</sub></td>
+                    <td>w<sub>i</sub></td>
+                    <td>w<sub>f</sub></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input id="table4t1i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4t1f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w1i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w1f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input id="table4t2i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4t2f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w2i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w2f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input id="table4t3i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4t3f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w3i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w3f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input id="table4t4i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4t4f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w4i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w4f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input id="table4t5i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4t5f" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w5i" class="form-control form-control-sm" type="number" /></td>
+                    <td><input id="table4w5f" class="form-control form-control-sm" type="number" /></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-bordered table-hover">
+                <tr>
+                    <td>횟수</td>
+                    <td>I<sub>i</sub></td>
+                    <td>I<sub>f</sub></td>
+                    <td>각운동량 오차율(%)</td>
+                    <td>K<sub>i</sub></td>
+                    <td>K<sub>f</sub></td>
+                    <td>K<sub>fth</sub></td>
+                    <td>회전 운동E 오차율(%)</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td id="table4l1i"></td>
+                    <td id="table4l1f"></td>
+                    <td id="table4l1diff"></td>
+                    <td id="table4K1i"></td>
+                    <td id="table4K1f"></td>
+                    <td id="table4K1fth"></td>
+                    <td id="table4K1diff"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td id="table4l2i"></td>
+                    <td id="table4l2f"></td>
+                    <td id="table4l2diff"></td>
+                    <td id="table4K2i"></td>
+                    <td id="table4K2f"></td>
+                    <td id="table4K2fth"></td>
+                    <td id="table4K2diff"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td id="table4l3i"></td>
+                    <td id="table4l3f"></td>
+                    <td id="table4l3diff"></td>
+                    <td id="table4K3i"></td>
+                    <td id="table4K3f"></td>
+                    <td id="table4K3fth"></td>
+                    <td id="table4K3diff"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td id="table4l4i"></td>
+                    <td id="table4l4f"></td>
+                    <td id="table4l4diff"></td>
+                    <td id="table4K4i"></td>
+                    <td id="table4K4f"></td>
+                    <td id="table4K4fth"></td>
+                    <td id="table4K4diff"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td id="table4l5i"></td>
+                    <td id="table4l5f"></td>
+                    <td id="table4l5diff"></td>
+                    <td id="table4K5i"></td>
+                    <td id="table4K5f"></td>
+                    <td id="table4K5fth"></td>
+                    <td id="table4K5diff"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="/static/js/exp07.js"></script>
+    <script src="/static/js/footerLoader.js"></script>
+</body>
+</html>
