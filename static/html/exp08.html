@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics Helper</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>탄성 비탄성 충돌 실험</h1>
+            <input type="button" class="btn btn-default" id="calculate" value="계산하기" />
+            <input type="button" class="btn btn-default" id="clear" value="지우기" />
+            <!-- table1 -->
+            <h2>탄성 충돌(글라이더에 고무줄 범퍼를 부착한 경우)</h2>
+            <h3>실험 1. 정지해 있는 m<sub>2</sub>에 움직이는 m<sub>1</sub>이 충돌하는 경우(m<sub>1</sub> >> m<sub>2</sub>)</h3>
+            <div class="table-responsive">
+                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                    <tr>
+                        <td>L<sub>1</sub></td>
+                        <td>
+                            <input id="l1_A" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>L<sub>2</sub></td>
+                        <td>
+                            <input id="l2_A" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>m<sub>1</sub></td>
+                        <td>
+                            <input id="m1_A" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>m<sub>2</sub></td>
+                        <td>
+                            <input id="m2_A" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>v<sub>2i</sub>=0</td>
+                    </tr>
+                </table>
+                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                    <tr>
+                        <td>횟수</td>
+                        <td>t<sub>1i</sub></td>
+                        <td>t<sub>1f</sub></td>
+                        <td>t<sub>2f</sub></td>
+                        <td>v<sub>1i</sub></td>
+                        <td>v<sub>1f</sub></td>
+                        <td>v<sub>2f</sub></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <input id="t1i_A1" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t1f_A1" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t2f_A1" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td id="v1i_A1"></td>
+                        <td id="v1f_A1"></td>
+                        <td id="v2f_A1"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            <input id="t1i_A2" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t1f_A2" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t2f_A2" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td id="v1i_A2"></td>
+                        <td id="v1f_A2"></td>
+                        <td id="v2f_A2"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <input id="t1i_A3" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t1f_A3" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t2f_A3" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td id="v1i_A3"></td>
+                        <td id="v1f_A3"></td>
+                        <td id="v2f_A3"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            <input id="t1i_A4" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t1f_A4" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t2f_A4" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td id="v1i_A4"></td>
+                        <td id="v1f_A4"></td>
+                        <td id="v2f_A4"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            <input id="t1i_A5" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t1f_A5" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td>
+                            <input id="t2f_A5" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td id="v1i_A5"></td>
+                        <td id="v1f_A5"></td>
+                        <td id="v2f_A5"></td>
+                    </tr>
+
+                </table>
+                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                    <tr>
+                        <td>횟수</td>
+                        <td>운동량p<sub>i</sub></td>
+                        <td>운동량p<sub>f</sub></td>
+                        <td>p 오차율 (%)</td>
+                        <td>운동E K<sub>i</sub></td>
+                        <td>운동E K<sub>f</sub></td>
+                        <td>K 오차율 (%)</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td id="pi_A1"></td>
+                        <td id="pf_A1"></td>
+                        <td id="diff_p_A1"></td>
+                        <td id="ki_A1"></td>
+                        <td id="kf_A1"></td>
+                        <td id="diff_k_A1"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td id="pi_A2"></td>
+                        <td id="pf_A2"></td>
+                        <td id="diff_p_A2"></td>
+                        <td id="ki_A2"></td>
+                        <td id="kf_A2"></td>
+                        <td id="diff_k_A2"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td id="pi_A3"></td>
+                        <td id="pf_A3"></td>
+                        <td id="diff_p_A3"></td>
+                        <td id="ki_A3"></td>
+                        <td id="kf_A3"></td>
+                        <td id="diff_k_A3"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td id="pi_A4"></td>
+                        <td id="pf_A4"></td>
+                        <td id="diff_p_A4"></td>
+                        <td id="ki_A4"></td>
+                        <td id="kf_A4"></td>
+                        <td id="diff_k_A4"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td id="pi_A5"></td>
+                        <td id="pf_A5"></td>
+                        <td id="diff_p_A5"></td>
+                        <td id="ki_A5"></td>
+                        <td id="kf_A5"></td>
+                        <td id="diff_k_A5"></td>
+                    </tr>
+                </table>
+
+                <br>
+                <!-- table2 -->
+                <h3>실험 2. 정지해 있는 m<sub>2</sub>에 움직이는 m<sub>1</sub>이 충돌하는 경우(m<sub>1</sub> << m<sub>2</sub>)</h3>
+                <div class="table-responsive">
+                    <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                        <tr>
+                            <td>L<sub>1</sub></td>
+                            <td>
+                                <input id="l1_B" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>L<sub>2</sub></td>
+                            <td>
+                                <input id="l2_B" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>m<sub>1</sub></td>
+                            <td>
+                                <input id="m1_B" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>m<sub>2</sub></td>
+                            <td>
+                                <input id="m2_B" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>v<sub>2i</sub>=0</td>
+                        </tr>
+                    </table>
+                    <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                        <tr>
+                            <td>횟수</td>
+                            <td>t<sub>1i</sub></td>
+                            <td>t<sub>1f</sub></td>
+                            <td>t<sub>2f</sub></td>
+                            <td>v<sub>1i</sub></td>
+                            <td>v<sub>1f</sub></td>
+                            <td>v<sub>2f</sub></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <input id="t1i_B1" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t1f_B1" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t2f_B1" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="v1i_B1"></td>
+                            <td id="v1f_B1"></td>
+                            <td id="v2f_B1"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <input id="t1i_B2" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t1f_B2" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t2f_B2" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="v1i_B2"></td>
+                            <td id="v1f_B2"></td>
+                            <td id="v2f_B2"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <input id="t1i_B3" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t1f_B3" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t2f_B3" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="v1i_B3"></td>
+                            <td id="v1f_B3"></td>
+                            <td id="v2f_B3"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <input id="t1i_B4" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t1f_B4" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t2f_B4" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="v1i_B4"></td>
+                            <td id="v1f_B4"></td>
+                            <td id="v2f_B4"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>
+                                <input id="t1i_B5" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t1f_B5" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td>
+                                <input id="t2f_B5" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="v1i_B5"></td>
+                            <td id="v1f_B5"></td>
+                            <td id="v2f_B5"></td>
+                        </tr>
+    
+                    </table>
+                    <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                        <tr>
+                            <td>횟수</td>
+                            <td>운동량p<sub>i</sub></td>
+                            <td>운동량p<sub>f</sub></td>
+                            <td>p 오차율 (%)</td>
+                            <td>운동E K<sub>i</sub></td>
+                            <td>운동E K<sub>f</sub></td>
+                            <td>K 오차율 (%)</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td id="pi_B1"></td>
+                            <td id="pf_B1"></td>
+                            <td id="diff_p_B1"></td>
+                            <td id="ki_B1"></td>
+                            <td id="kf_B1"></td>
+                            <td id="diff_k_B1"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td id="pi_B2"></td>
+                            <td id="pf_B2"></td>
+                            <td id="diff_p_B2"></td>
+                            <td id="ki_B2"></td>
+                            <td id="kf_B2"></td>
+                            <td id="diff_k_B2"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td id="pi_B3"></td>
+                            <td id="pf_B3"></td>
+                            <td id="diff_p_B3"></td>
+                            <td id="ki_B3"></td>
+                            <td id="kf_B3"></td>
+                            <td id="diff_k_B3"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td id="pi_B4"></td>
+                            <td id="pf_B4"></td>
+                            <td id="diff_p_B4"></td>
+                            <td id="ki_B4"></td>
+                            <td id="kf_B4"></td>
+                            <td id="diff_k_B4"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td id="pi_B5"></td>
+                            <td id="pf_B5"></td>
+                            <td id="diff_p_B5"></td>
+                            <td id="ki_B5"></td>
+                            <td id="kf_B5"></td>
+                            <td id="diff_k_B5"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <h2>완전 비탄성 충돌(글라이더에 핀 범퍼와 왁스 범퍼를 부착한 경우)</h2>
+                    <!-- table3 -->
+                    <br>
+                    <h3>실험 1. 정지해 있는 m<sub>2</sub>에 m<sub>1</sub>이 충돌하는 경우(m<sub>1</sub> = m<sub>2</sub>)
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                            <tr>
+                                <td>L<sub>1</sub></td>
+                                <td>
+                                    <input id="l1_C" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>L<sub>2</sub></td>
+                                <td>
+                                    <input id="l2_C" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>m<sub>1</sub></td>
+                                <td>
+                                    <input id="m1_C" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>m<sub>2</sub></td>
+                                <td>
+                                    <input id="m2_C" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>v<sub>2i</sub>=0</td>
+                            </tr>
+                        </table>
+                        <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                            <tr>
+                                <td rowspan="2">횟수</td>
+                                <td rowspan="2">t<sub>1i</sub></td>
+                                <td rowspan="2">t<sub>f</sub></td>
+                                <td rowspan="2">v<sub>1i</sub></td>
+                                <td colspan="2">v<sub>f</sub></td>
+                            </tr>
+                            <tr>
+                                <td>이론</td>
+                                <td>실험</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <input id="t1i_C1" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>
+                                    <input id="tf_C1" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="v1i_C1"></td>
+                                <td id="vf_AC1"></td>
+                                <td id="vf_EC1"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <input id="t1i_C2" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>
+                                    <input id="tf_C2" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="v1i_C2"></td>
+                                <td id="vf_AC2"></td>
+                                <td id="vf_EC2"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <input id="t1i_C3" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>
+                                    <input id="tf_C3" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="v1i_C3"></td>
+                                <td id="vf_AC3"></td>
+                                <td id="vf_EC3"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <input id="t1i_C4" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>
+                                    <input id="tf_C4" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="v1i_C4"></td>
+                                <td id="vf_AC4"></td>
+                                <td id="vf_EC4"></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <input id="t1i_C5" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td>
+                                    <input id="tf_C5" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="v1i_C5"></td>
+                                <td id="vf_AC5"></td>
+                                <td id="vf_EC5"></td>
+                            </tr>
+                        </table>
+                        <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                            <tr>
+                                <td rowspan="2">횟수</td>
+                                <td rowspan="2">운동량p<sub>i</sub></td>
+                                <td colspan="2">운동량p<sub>f</sub></td>
+                                <td rowspan="2">p 오차율 (%)</td>
+                                <td rowspan="2">운동E K<sub>i</sub></td>
+                                <td colspan="2">운동E K<sub>f</sub></td>
+                                <td rowspan="2">&#916;K 오차율 (%)</td>
+                            </tr>
+                            <tr>
+                                <td>이론</td>
+                                <td>실험</td>
+                                <td>이론</td>
+                                <td>실험</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td id="pi_C1"></td>
+                                <td id="pf_AC1"></td>
+                                <td id="pf_EC1"></td>
+                                <td id="diff_p_C1"></td>
+                                <td id="ki_C1"></td>
+                                <td id="ki_AC1"></td>
+                                <td id="ki_EC1"></td>
+                                <td id="diff_k_C1"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td id="pi_C2"></td>
+                                <td id="pf_AC2"></td>
+                                <td id="pf_EC2"></td>
+                                <td id="diff_p_C2"></td>
+                                <td id="ki_C2"></td>
+                                <td id="ki_AC2"></td>
+                                <td id="ki_EC2"></td>
+                                <td id="diff_k_C2"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td id="pi_C3"></td>
+                                <td id="pf_AC3"></td>
+                                <td id="pf_EC3"></td>
+                                <td id="diff_p_C3"></td>
+                                <td id="ki_C3"></td>
+                                <td id="ki_AC3"></td>
+                                <td id="ki_EC3"></td>
+                                <td id="diff_k_C3"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td id="pi_C4"></td>
+                                <td id="pf_AC4"></td>
+                                <td id="pf_EC4"></td>
+                                <td id="diff_p_C4"></td>
+                                <td id="ki_C4"></td>
+                                <td id="ki_AC4"></td>
+                                <td id="ki_EC4"></td>
+                                <td id="diff_k_C4"></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td id="pi_C5"></td>
+                                <td id="pf_AC5"></td>
+                                <td id="pf_EC5"></td>
+                                <td id="diff_p_C5"></td>
+                                <td id="ki_C5"></td>
+                                <td id="ki_AC5"></td>
+                                <td id="ki_EC5"></td>
+                                <td id="diff_k_C5"></td>
+                            </tr>
+                        </table>
+                        <!-- table4 -->
+                        <br>
+                        <h3>실험 2. 정지해 있는 m<sub>2</sub>에 m<sub>1</sub>이 충돌하는 경우(m<sub>1</sub> < m<sub>2</sub>)
+                        </h3>
+                        <div class="table-responsive">
+                            <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                                <tr>
+                                    <td>L<sub>1</sub></td>
+                                    <td>
+                                        <input id="l1_D" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>L<sub>2</sub></td>
+                                    <td>
+                                        <input id="l2_D" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>m<sub>1</sub></td>
+                                    <td>
+                                        <input id="m1_D" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>m<sub>2</sub></td>
+                                    <td>
+                                        <input id="m2_D" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>v<sub>2i</sub>=0</td>
+                                </tr>
+                            </table>
+                            <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                                <tr>
+                                    <td rowspan="2">횟수</td>
+                                    <td rowspan="2">t<sub>1i</sub></td>
+                                    <td rowspan="2">t<sub>f</sub></td>
+                                    <td rowspan="2">v<sub>1i</sub></td>
+                                    <td colspan="2">v<sub>f</sub></td>
+                                </tr>
+                                <tr>
+                                    <td>이론</td>
+                                    <td>실험</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <input id="t1i_D1" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>
+                                        <input id="tf_D1" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td id="v1i_D1"></td>
+                                    <td id="vf_AD1"></td>
+                                    <td id="vf_ED1"></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <input id="t1i_D2" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>
+                                        <input id="tf_D2" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td id="v1i_D2"></td>
+                                    <td id="vf_AD2"></td>
+                                    <td id="vf_ED2"></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <input id="t1i_D3" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>
+                                        <input id="tf_D3" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td id="v1i_D3"></td>
+                                    <td id="vf_AD3"></td>
+                                    <td id="vf_ED3"></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <input id="t1i_D4" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>
+                                        <input id="tf_D4" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td id="v1i_D4"></td>
+                                    <td id="vf_AD4"></td>
+                                    <td id="vf_ED4"></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <input id="t1i_D5" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td>
+                                        <input id="tf_D5" class="form-control form-control-sm" type="number" />
+                                    </td>
+                                    <td id="v1i_D5"></td>
+                                    <td id="vf_AD5"></td>
+                                    <td id="vf_ED5"></td>
+                                </tr>
+                            </table>
+                            <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                                <tr>
+                                    <td rowspan="2">횟수</td>
+                                    <td rowspan="2">운동량p<sub>i</sub></td>
+                                    <td colspan="2">운동량p<sub>f</sub></td>
+                                    <td rowspan="2">p 오차율 (%)</td>
+                                    <td rowspan="2">운동E K<sub>i</sub></td>
+                                    <td colspan="2">운동E K<sub>f</sub></td>
+                                    <td rowspan="2">&#916;K 오차율 (%)</td>
+                                </tr>
+                                <tr>
+                                    <td>이론</td>
+                                    <td>실험</td>
+                                    <td>이론</td>
+                                    <td>실험</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td id="pi_D1"></td>
+                                    <td id="pf_AD1"></td>
+                                    <td id="pf_ED1"></td>
+                                    <td id="diff_p_D1"></td>
+                                    <td id="ki_D1"></td>
+                                    <td id="ki_AD1"></td>
+                                    <td id="ki_ED1"></td>
+                                    <td id="diff_k_D1"></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td id="pi_D2"></td>
+                                    <td id="pf_AD2"></td>
+                                    <td id="pf_ED2"></td>
+                                    <td id="diff_p_D2"></td>
+                                    <td id="ki_D2"></td>
+                                    <td id="ki_AD2"></td>
+                                    <td id="ki_ED2"></td>
+                                    <td id="diff_k_D2"></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td id="pi_D3"></td>
+                                    <td id="pf_AD3"></td>
+                                    <td id="pf_ED3"></td>
+                                    <td id="diff_p_D3"></td>
+                                    <td id="ki_D3"></td>
+                                    <td id="ki_AD3"></td>
+                                    <td id="ki_ED3"></td>
+                                    <td id="diff_k_D3"></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td id="pi_D4"></td>
+                                    <td id="pf_AD4"></td>
+                                    <td id="pf_ED4"></td>
+                                    <td id="diff_p_D4"></td>
+                                    <td id="ki_D4"></td>
+                                    <td id="ki_AD4"></td>
+                                    <td id="ki_ED4"></td>
+                                    <td id="diff_k_D4"></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td id="pi_D5"></td>
+                                    <td id="pf_AD5"></td>
+                                    <td id="pf_ED5"></td>
+                                    <td id="diff_p_D5"></td>
+                                    <td id="ki_D5"></td>
+                                    <td id="ki_AD5"></td>
+                                    <td id="ki_ED5"></td>
+                                    <td id="diff_k_D5"></td>
+                                </tr>
+                            </table>
+                            <!-- table5 -->
+                            <br>
+                            <h3>실험 3. 정지해 있는 m<sub>2</sub>에 m<sub>1</sub>이 충돌하는 경우(m<sub>1</sub> > m<sub>2</sub>)
+                            </h3>
+                            <div class="table-responsive">
+                                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                                    <tr>
+                                        <td>L<sub>1</sub></td>
+                                        <td>
+                                            <input id="l1_E" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>L<sub>2</sub></td>
+                                        <td>
+                                            <input id="l2_E" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>m<sub>1</sub></td>
+                                        <td>
+                                            <input id="m1_E" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>m<sub>2</sub></td>
+                                        <td>
+                                            <input id="m2_E" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>v<sub>2i</sub>=0</td>
+                                    </tr>
+                                </table>
+                                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                                    <tr>
+                                        <td rowspan="2">횟수</td>
+                                        <td rowspan="2">t<sub>1i</sub></td>
+                                        <td rowspan="2">t<sub>f</sub></td>
+                                        <td rowspan="2">v<sub>1i</sub></td>
+                                        <td colspan="2">v<sub>f</sub></td>
+                                    </tr>
+                                    <tr>
+                                        <td>이론</td>
+                                        <td>실험</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <input id="t1i_E1" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>
+                                            <input id="tf_E1" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td id="v1i_E1"></td>
+                                        <td id="vf_AE1"></td>
+                                        <td id="vf_EE1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>
+                                            <input id="t1i_E2" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>
+                                            <input id="tf_E2" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td id="v1i_E2"></td>
+                                        <td id="vf_AE2"></td>
+                                        <td id="vf_EE2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>
+                                            <input id="t1i_E3" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>
+                                            <input id="tf_E3" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td id="v1i_E3"></td>
+                                        <td id="vf_AE3"></td>
+                                        <td id="vf_EE3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>
+                                            <input id="t1i_E4" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>
+                                            <input id="tf_E4" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td id="v1i_E4"></td>
+                                        <td id="vf_AE4"></td>
+                                        <td id="vf_EE4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>
+                                            <input id="t1i_E5" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td>
+                                            <input id="tf_E5" class="form-control form-control-sm" type="number" />
+                                        </td>
+                                        <td id="v1i_E5"></td>
+                                        <td id="vf_AE5"></td>
+                                        <td id="vf_EE5"></td>
+                                    </tr>
+                                </table>
+                                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                                    <tr>
+                                        <td rowspan="2">횟수</td>
+                                        <td rowspan="2">운동량p<sub>i</sub></td>
+                                        <td colspan="2">운동량p<sub>f</sub></td>
+                                        <td rowspan="2">p 오차율 (%)</td>
+                                        <td rowspan="2">운동E K<sub>i</sub></td>
+                                        <td colspan="2">운동E K<sub>f</sub></td>
+                                        <td rowspan="2">&#916;K 오차율 (%)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>이론</td>
+                                        <td>실험</td>
+                                        <td>이론</td>
+                                        <td>실험</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td id="pi_E1"></td>
+                                        <td id="pf_AE1"></td>
+                                        <td id="pf_EE1"></td>
+                                        <td id="diff_p_E1"></td>
+                                        <td id="ki_E1"></td>
+                                        <td id="ki_AE1"></td>
+                                        <td id="ki_EE1"></td>
+                                        <td id="diff_k_E1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td id="pi_E2"></td>
+                                        <td id="pf_AE2"></td>
+                                        <td id="pf_EE2"></td>
+                                        <td id="diff_p_E2"></td>
+                                        <td id="ki_E2"></td>
+                                        <td id="ki_AE2"></td>
+                                        <td id="ki_EE2"></td>
+                                        <td id="diff_k_E2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td id="pi_E3"></td>
+                                        <td id="pf_AE3"></td>
+                                        <td id="pf_EE3"></td>
+                                        <td id="diff_p_E3"></td>
+                                        <td id="ki_E3"></td>
+                                        <td id="ki_AE3"></td>
+                                        <td id="ki_EE3"></td>
+                                        <td id="diff_k_E3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td id="pi_E4"></td>
+                                        <td id="pf_AE4"></td>
+                                        <td id="pf_EE4"></td>
+                                        <td id="diff_p_E4"></td>
+                                        <td id="ki_E4"></td>
+                                        <td id="ki_AE4"></td>
+                                        <td id="ki_EE4"></td>
+                                        <td id="diff_k_E4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td id="pi_E5"></td>
+                                        <td id="pf_AE5"></td>
+                                        <td id="pf_EE5"></td>
+                                        <td id="diff_p_E5"></td>
+                                        <td id="ki_E5"></td>
+                                        <td id="ki_AE5"></td>
+                                        <td id="ki_EE5"></td>
+                                        <td id="diff_k_E5"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footer"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/exp06.js"></script>
+    <script src="/static/js/footerLoader.js"></script>
+</body>
+
+</html>
