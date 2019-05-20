@@ -87,8 +87,8 @@ $(document).ready(function () {
             let Vf_A = ((M1*V1i)/(M1+M2)).toFixed(4)
             let Vf_E = (L1 / Tf).toFixed(4)
             let P1i = (M1 * V1i).toFixed(4)
-            let Pf_A = (M1 * Vf_A).toFixed(4)
-            let Pf_E = (M1 * Vf_E).toFixed(4)
+            let Pf_A = ((M1+M2) * Vf_A).toFixed(4)
+            let Pf_E = ((M1+M2) * Vf_E).toFixed(4)
             let Pi = P1i
             let difference_p=(Math.abs(Pi-Pf_E)/Pf_A*100).toFixed(2)
             let Ki = ((1/2)*(M1*(V1i)*(V1i))).toFixed(4)
@@ -124,8 +124,8 @@ $(document).ready(function () {
             let Vf_A = ((M1*V1i)/(M1+M2)).toFixed(4)
             let Vf_E = (L1 / Tf).toFixed(4)
             let P1i = (M1 * V1i).toFixed(4)
-            let Pf_A = (M1 * Vf_A).toFixed(4)
-            let Pf_E = (M1 * Vf_E).toFixed(4)
+            let Pf_A = ((M1+M2) * Vf_A).toFixed(4)
+            let Pf_E = ((M1+M2) * Vf_E).toFixed(4)
             let Pi = P1i
             let difference_p=(Math.abs(Pi-Pf_E)/Pf_A*100).toFixed(2)
             let Ki = ((1/2)*(M1*(V1i)*(V1i))).toFixed(4)
@@ -159,8 +159,8 @@ $(document).ready(function () {
             let Vf_A = ((M1*V1i)/(M1+M2)).toFixed(4)
             let Vf_E = (L1 / Tf).toFixed(4)
             let P1i = (M1 * V1i).toFixed(4)
-            let Pf_A = (M1 * Vf_A).toFixed(4)
-            let Pf_E = (M1 * Vf_E).toFixed(4)
+            let Pf_A = ((M1+M2) * Vf_A).toFixed(4)
+            let Pf_E = ((M1+M2) * Vf_E).toFixed(4)
             let Pi = P1i
             let difference_p=(Math.abs(Pi-Pf_E)/Pf_A*100).toFixed(2)
             let Ki = ((1/2)*(M1*(V1i)*(V1i))).toFixed(4)
