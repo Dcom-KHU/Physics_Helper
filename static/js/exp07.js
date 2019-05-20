@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('#calculate').click(function(){
-        let m = Number($('#table1m').val()) | Number($('#table2m').val())
-        let r = Number($('#table1r').val()) | Number($('#table2r').val())
+        let m = Number($('#table1m').val())
+        let r = Number($('#table1r').val())
         for(let i=1;i<=2;i++){
             let hs=0
             let ts=0
@@ -50,7 +50,7 @@ $(document).ready(function(){
                     $(`#table${j}w${i}f`).val(wf)
                 }
                 else{
-                    wf=Number($(`#table${j}wf${i}`).val())
+                    wf=Number($(`#table${j}w${i}f`).val())
                 }
                 let li=Ii*wi
                 $(`#table${j}l${i}i`).text(li)
