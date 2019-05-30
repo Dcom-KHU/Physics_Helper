@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics Helper</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>파동 실험</h1>
+            <input type="button" class="btn btn-default" id="calculate" value="계산하기" />
+            <input type="button" class="btn btn-default" id="clear" value="지우기" />
+            <!-- table1 -->
+            <h2>줄의 진동</h2>
+            <div class="table-responsive">
+                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                    <tr>
+                        <th>L</th>
+                        <th>n</th>
+                        <th>f</th>
+                        <th>&#955;</th>
+                        <th>v</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="10">0.5m</td>
+                        <td>1</td>
+                        <td>
+                            <input id="f1_A" class="form-control form-control-sm" type="number" />
+                        </td>
+                        <td id="l1_A"></td>
+                        <td id="v1_A"></td>
+                    </tr>
+                    <tr>
+                            <td>2</td>
+                            <td>
+                                <input id="f2_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l2_A"></td>
+                            <td id="v2_A"></td>
+                    </tr>
+                    <tr>
+                            <td>3</td>
+                            <td>
+                                <input id="f3_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l3_A"></td>
+                            <td id="v3_A"></td>
+                    </tr>
+                    <tr>
+                            <td>4</td>
+                            <td>
+                                <input id="f4_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l4_A"></td>
+                            <td id="v4_A"></td>
+                    </tr>
+                    <tr>
+                            <td>5</td>
+                            <td>
+                                <input id="f5_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l5_A"></td>
+                            <td id="v5_A"></td>
+                    </tr>
+                    <tr>
+                            <td>6</td>
+                            <td>
+                                <input id="f6_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l6_A"></td>
+                            <td id="v6_A"></td>
+                    </tr>
+                    <tr>
+                            <td>7</td>
+                            <td>
+                                <input id="f7_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l7_A"></td>
+                            <td id="v7_A"></td>
+                    </tr>
+                    <tr>
+                            <td>8</td>
+                            <td>
+                                <input id="f8_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l8_A"></td>
+                            <td id="v8_A"></td>
+                    </tr>
+                    <tr>
+                            <td>9</td>
+                            <td>
+                                <input id="f9_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l9_A"></td>
+                            <td id="v9_A"></td>
+                    </tr>
+                    <tr>
+                            <td>10</td>
+                            <td>
+                                <input id="f10_A" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l10_A"></td>
+                            <td id="v10_A"></td>
+                    </tr>
+                </table>
+                <!-- table2 -->
+                <table class="dataTable table table-striped table-bordered table-hover" id="data1">
+                        <tr>
+                            <th>L</th>
+                            <th>n</th>
+                            <th>f</th>
+                            <th>&#955;</th>
+                            <th>v</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="10">1m</td>
+                            <td>1</td>
+                            <td>
+                                <input id="f1_B" class="form-control form-control-sm" type="number" />
+                            </td>
+                            <td id="l1_B"></td>
+                            <td id="v1_B"></td>
+                        </tr>
+                        <tr>
+                                <td>2</td>
+                                <td>
+                                    <input id="f2_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l2_B"></td>
+                                <td id="v2_B"></td>
+                        </tr>
+                        <tr>
+                                <td>3</td>
+                                <td>
+                                    <input id="f3_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l3_B"></td>
+                                <td id="v3_B"></td>
+                        </tr>
+                        <tr>
+                                <td>4</td>
+                                <td>
+                                    <input id="f4_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l4_B"></td>
+                                <td id="v4_B"></td>
+                        </tr>
+                        <tr>
+                                <td>5</td>
+                                <td>
+                                    <input id="f5_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l5_B"></td>
+                                <td id="v5_B"></td>
+                        </tr>
+                        <tr>
+                                <td>6</td>
+                                <td>
+                                    <input id="f6_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l6_B"></td>
+                                <td id="v6_B"></td>
+                        </tr>
+                        <tr>
+                                <td>7</td>
+                                <td>
+                                    <input id="f7_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l7_B"></td>
+                                <td id="v7_B"></td>
+                        </tr>
+                        <tr>
+                                <td>8</td>
+                                <td>
+                                    <input id="f8_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l8_B"></td>
+                                <td id="v8_B"></td>
+                        </tr>
+                        <tr>
+                                <td>9</td>
+                                <td>
+                                    <input id="f9_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l9_B"></td>
+                                <td id="v9_B"></td>
+                        </tr>
+                        <tr>
+                                <td>10</td>
+                                <td>
+                                    <input id="f10_B" class="form-control form-control-sm" type="number" />
+                                </td>
+                                <td id="l10_B"></td>
+                                <td id="v10_B"></td>
+                        </tr>
+                    </table>
+
+                <br>
+
+
+                    </div>
+                    <div id="footer"></div>
+
+                </div>
+            </div>
+
+            <script src="/static/js/exp10.js"></script>
+            <script src="/static/js/footerLoader.js"></script>
+</body>
+
+</html>
