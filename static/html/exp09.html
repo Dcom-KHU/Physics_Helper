@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics Helper</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>단진자 운동 실험</h1>
+            <input type="button" class="btn btn-default" id="calculate" value="계산하기" />
+            <input type="button" class="btn btn-default" id="clear" value="지우기" />
+            <h3>A. 각도 θ가 변하는 경우</h3>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td>l</td>
+                    <td><input type="number" id="table1_l" class="form-control form-control-sm"></td>
+                    <td>m</td>
+                    <td><input type="number" id="table1_m" class="form-control form-control-sm"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td rowspan="2">θ</td>
+                    <td colspan="8">T</td>
+                </tr>
+                <tr>
+                    <td>1회</td>
+                    <td>2회</td>
+                    <td>3회</td>
+                    <td>4회</td>
+                    <td>5회</td>
+                    <td>6회</td>
+                    <td>7회</td>
+                    <td>8회</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><input type="number" id="table1_d10_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d10_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d10_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d10_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d10_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d10_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d10_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d10_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td><input type="number" id="table1_d20_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d20_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d20_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d20_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d20_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d20_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d20_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d20_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td><input type="number" id="table1_d30_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d30_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d30_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d30_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d30_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d30_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d30_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d30_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td><input type="number" id="table1_d40_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d40_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d40_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d40_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d40_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d40_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d40_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d40_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td><input type="number" id="table1_d50_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d50_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d50_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d50_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d50_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d50_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d50_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d50_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>60</td>
+                    <td><input type="number" id="table1_d60_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d60_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d60_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d60_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d60_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d60_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d60_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d60_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>70</td>
+                    <td><input type="number" id="table1_d70_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d70_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d70_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d70_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d70_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d70_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d70_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d70_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>80</td>
+                    <td><input type="number" id="table1_d80_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d80_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d80_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d80_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d80_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d80_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d80_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table1_d80_T8" class="form-control form-control-sm"/></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td rowspan="2">θ</td>
+                    <td colspan="2">T<sub>avg</sub></td>
+                    <td rowspan="2">T 오차율 (%)</td>
+                    <td colspan="2">g</td>
+                    <td rowspan="2">g 오차율 (%)</td>
+                </tr>
+                <tr>
+                    <td>이론</td>
+                    <td>실험</td>
+                    <td>이론</td>
+                    <td>실험</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td id="table1_d10_Tavg_ideal"></td>
+                    <td id="table1_d10_Tavg_exp"></td>
+                    <td id="table1_d10_Tavg_diff"></td>
+                    <td id="table1_d10_g_ideal"></td>
+                    <td id="table1_d10_g_exp"></td>
+                    <td id="table1_d10_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td id="table1_d20_Tavg_ideal"></td>
+                    <td id="table1_d20_Tavg_exp"></td>
+                    <td id="table1_d20_Tavg_diff"></td>
+                    <td id="table1_d20_g_ideal"></td>
+                    <td id="table1_d20_g_exp"></td>
+                    <td id="table1_d20_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>30</td>
+                    <td id="table1_d30_Tavg_ideal"></td>
+                    <td id="table1_d30_Tavg_exp"></td>
+                    <td id="table1_d30_Tavg_diff"></td>
+                    <td id="table1_d30_g_ideal"></td>
+                    <td id="table1_d30_g_exp"></td>
+                    <td id="table1_d30_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>40</td>
+                    <td id="table1_d40_Tavg_ideal"></td>
+                    <td id="table1_d40_Tavg_exp"></td>
+                    <td id="table1_d40_Tavg_diff"></td>
+                    <td id="table1_d40_g_ideal"></td>
+                    <td id="table1_d40_g_exp"></td>
+                    <td id="table1_d40_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td id="table1_d50_Tavg_ideal"></td>
+                    <td id="table1_d50_Tavg_exp"></td>
+                    <td id="table1_d50_Tavg_diff"></td>
+                    <td id="table1_d50_g_ideal"></td>
+                    <td id="table1_d50_g_exp"></td>
+                    <td id="table1_d50_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>60</td>
+                    <td id="table1_d60_Tavg_ideal"></td>
+                    <td id="table1_d60_Tavg_exp"></td>
+                    <td id="table1_d60_Tavg_diff"></td>
+                    <td id="table1_d60_g_ideal"></td>
+                    <td id="table1_d60_g_exp"></td>
+                    <td id="table1_d60_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>70</td>
+                    <td id="table1_d70_Tavg_ideal"></td>
+                    <td id="table1_d70_Tavg_exp"></td>
+                    <td id="table1_d70_Tavg_diff"></td>
+                    <td id="table1_d70_g_ideal"></td>
+                    <td id="table1_d70_g_exp"></td>
+                    <td id="table1_d70_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>80</td>
+                    <td id="table1_d80_Tavg_ideal"></td>
+                    <td id="table1_d80_Tavg_exp"></td>
+                    <td id="table1_d80_Tavg_diff"></td>
+                    <td id="table1_d80_g_ideal"></td>
+                    <td id="table1_d80_g_exp"></td>
+                    <td id="table1_d80_g_diff"></td>
+                </tr>
+            </table>
+            <h3>B. 길이 l이 변하는 경우</h3>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td>θ</td>
+                    <td><input type="number" id="table2_d" class="form-control form-control-sm"></td>
+                    <td>m</td>
+                    <td><input type="number" id="table2_m" class="form-control form-control-sm"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td rowspan="2">l</td>
+                    <td colspan="8">T</td>
+                </tr>
+                <tr>
+                    <td>1회</td>
+                    <td>2회</td>
+                    <td>3회</td>
+                    <td>4회</td>
+                    <td>5회</td>
+                    <td>6회</td>
+                    <td>7회</td>
+                    <td>8회</td>
+                </tr>
+                <tr>
+                    <td>0.2</td>
+                    <td><input type="number" id="table2_l20_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l20_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l20_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l20_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l20_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l20_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l20_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l20_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>0.3</td>
+                    <td><input type="number" id="table2_l30_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l30_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l30_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l30_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l30_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l30_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l30_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l30_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>0.4</td>
+                    <td><input type="number" id="table2_l40_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l40_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l40_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l40_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l40_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l40_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l40_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l40_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>0.5</td>
+                    <td><input type="number" id="table2_l50_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l50_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l50_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l50_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l50_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l50_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l50_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l50_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>0.6</td>
+                    <td><input type="number" id="table2_l60_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l60_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l60_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l60_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l60_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l60_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l60_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l60_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td>0.7</td>
+                    <td><input type="number" id="table2_l70_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l70_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l70_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l70_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l70_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l70_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l70_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table2_l70_T8" class="form-control form-control-sm"/></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td rowspan="2">l</td>
+                    <td colspan="2">T<sub>avg</sub></td>
+                    <td rowspan="2">T 오차율 (%)</td>
+                    <td colspan="2">g</td>
+                    <td rowspan="2">g 오차율 (%)</td>
+                </tr>
+                <tr>
+                    <td>이론</td>
+                    <td>실험</td>
+                    <td>이론</td>
+                    <td>실험</td>
+                </tr>
+                <tr>
+                    <td>0.2</td>
+                    <td id="table2_l20_Tavg_ideal"></td>
+                    <td id="table2_l20_Tavg_exp"></td>
+                    <td id="table2_l20_Tavg_diff"></td>
+                    <td id="table2_l20_g_ideal"></td>
+                    <td id="table2_l20_g_exp"></td>
+                    <td id="table2_l20_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>0.3</td>
+                    <td id="table2_l30_Tavg_ideal"></td>
+                    <td id="table2_l30_Tavg_exp"></td>
+                    <td id="table2_l30_Tavg_diff"></td>
+                    <td id="table2_l30_g_ideal"></td>
+                    <td id="table2_l30_g_exp"></td>
+                    <td id="table2_l30_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>0.4</td>
+                    <td id="table2_l40_Tavg_ideal"></td>
+                    <td id="table2_l40_Tavg_exp"></td>
+                    <td id="table2_l40_Tavg_diff"></td>
+                    <td id="table2_l40_g_ideal"></td>
+                    <td id="table2_l40_g_exp"></td>
+                    <td id="table2_l40_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>0.5</td>
+                    <td id="table2_l50_Tavg_ideal"></td>
+                    <td id="table2_l50_Tavg_exp"></td>
+                    <td id="table2_l50_Tavg_diff"></td>
+                    <td id="table2_l50_g_ideal"></td>
+                    <td id="table2_l50_g_exp"></td>
+                    <td id="table2_l50_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>0.6</td>
+                    <td id="table2_l60_Tavg_ideal"></td>
+                    <td id="table2_l60_Tavg_exp"></td>
+                    <td id="table2_l60_Tavg_diff"></td>
+                    <td id="table2_l60_g_ideal"></td>
+                    <td id="table2_l60_g_exp"></td>
+                    <td id="table2_l60_g_diff"></td>
+                </tr>
+                <tr>
+                    <td>0.7</td>
+                    <td id="table2_l70_Tavg_ideal"></td>
+                    <td id="table2_l70_Tavg_exp"></td>
+                    <td id="table2_l70_Tavg_diff"></td>
+                    <td id="table2_l70_g_ideal"></td>
+                    <td id="table2_l70_g_exp"></td>
+                    <td id="table2_l70_g_diff"></td>
+                </tr>
+            </table>
+            <h3>C. 질량 m이 변하는 경우</h3>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td>l</td>
+                    <td><input type="number" id="table3_l" class="form-control form-control-sm"></td>
+                    <td>θ</td>
+                    <td><input type="number" id="table3_d" class="form-control form-control-sm"></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td rowspan="2">m</td>
+                    <td colspan="8">T</td>
+                </tr>
+                <tr>
+                    <td>1회</td>
+                    <td>2회</td>
+                    <td>3회</td>
+                    <td>4회</td>
+                    <td>5회</td>
+                    <td>6회</td>
+                    <td>7회</td>
+                    <td>8회</td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="table3_m1" class="form-control form-control-sm"></td>
+                    <td><input type="number" id="table3_m1_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m1_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m1_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m1_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m1_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m1_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m1_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m1_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="table3_m2" class="form-control form-control-sm"></td>
+                    <td><input type="number" id="table3_m2_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m2_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m2_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m2_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m2_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m2_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m2_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m2_T8" class="form-control form-control-sm"/></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="table3_m3" class="form-control form-control-sm"></td>
+                    <td><input type="number" id="table3_m3_T1" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m3_T2" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m3_T3" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m3_T4" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m3_T5" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m3_T6" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m3_T7" class="form-control form-control-sm"/></td>
+                    <td><input type="number" id="table3_m3_T8" class="form-control form-control-sm"/></td>
+                </tr>
+            </table>
+            <table class="dataTable table table-striped table-borderd table-hover">
+                <tr>
+                    <td rowspan="2">m</td>
+                    <td colspan="2">T<sub>avg</sub></td>
+                    <td rowspan="2">T 오차율 (%)</td>
+                    <td colspan="2">g</td>
+                    <td rowspan="2">g 오차율 (%)</td>
+                </tr>
+                <tr>
+                    <td>이론</td>
+                    <td>실험</td>
+                    <td>이론</td>
+                    <td>실험</td>
+                </tr>
+                <tr>
+                    <td id="table3_m1_show"></td>
+                    <td id="table3_m1_Tavg_ideal"></td>
+                    <td id="table3_m1_Tavg_exp"></td>
+                    <td id="table3_m1_Tavg_diff"></td>
+                    <td id="table3_m1_g_ideal"></td>
+                    <td id="table3_m1_g_exp"></td>
+                    <td id="table3_m1_g_diff"></td>
+                </tr>
+                <tr>
+                    <td id="table3_m2_show"></td>
+                    <td id="table3_m2_Tavg_ideal"></td>
+                    <td id="table3_m2_Tavg_exp"></td>
+                    <td id="table3_m2_Tavg_diff"></td>
+                    <td id="table3_m2_g_ideal"></td>
+                    <td id="table3_m2_g_exp"></td>
+                    <td id="table3_m2_g_diff"></td>
+                </tr>
+                <tr>
+                    <td id="table3_m3_show"></td>
+                    <td id="table3_m3_Tavg_ideal"></td>
+                    <td id="table3_m3_Tavg_exp"></td>
+                    <td id="table3_m3_Tavg_diff"></td>
+                    <td id="table3_m3_g_ideal"></td>
+                    <td id="table3_m3_g_exp"></td>
+                    <td id="table3_m3_g_diff"></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="/static/js/exp09.js"></script>
+    <script src="/static/js/footerLoader.js"></script>
+</body>
+</html>
