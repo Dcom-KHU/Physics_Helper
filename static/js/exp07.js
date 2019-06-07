@@ -73,7 +73,7 @@ $(document).ready(function(){
             let R1=Number($(`#table4R1`).val())
             let R2=Number($(`#tableR2`).val())
             Ii = (0.5*Md*R*R).toFixed(5)
-            If = (0.5*(Md+Mr)*R*R).toFixed(5)
+            If = (0.5*Md*R*R+0.5*Mr*(R1*R1+R2*R2)).toFixed(5)
             $(`#table4Ii1`).text(Ii)
             $(`#table4If1`).text(If)
             $(`#table4Ii2`).text(Ii)
