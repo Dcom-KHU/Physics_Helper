@@ -25,7 +25,7 @@ $(document).ready(function () {
             let Ki = K1i
             let Kf = Number(K1f) + Number(K2f)
             let Pi = P1i
-            let Pf = (Number(P2f) + Number(P1f)).toFixed(4)
+            let Pf = (Number(P2f) - Number(P1f)).toFixed(4)
             let difference_p=(Math.abs(Pi-Pf)/Pi*100).toFixed(2)
             let difference_k=(Math.abs(Ki-Kf)/Ki*100).toFixed(2)
             $(`#v1i_A${i}`).text(V1i)
