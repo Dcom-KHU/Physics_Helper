@@ -3,3 +3,4 @@
 + 손쉬운 계산이 가능합니다. 
 + 개선사항있으면 issue 남겨주세요.
 + http://physics.jwseo001.com
++ https://physics.facerain.club/ (new)
